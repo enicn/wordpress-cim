@@ -1,0 +1,172 @@
+/**
+ * Careers Page Styles
+ */
+
+/* Main Container Styles */
+.careers-page {
+    background-color: #121212;
+    color: #ffffff;
+}
+
+.careers-container {
+    padding: 60px 0;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* Page Header */
+.page-header {
+    background-color: #1a1a1a;
+    padding: 30px 0;
+    margin-bottom: 0;
+}
+
+.page-title {
+    color: var(--industrial-yellow);
+    font-size: 2.5rem;
+    margin: 0;
+    text-transform: uppercase;
+}
+
+.breadcrumbs {
+    color: #cccccc;
+    margin-top: 10px;
+}
+
+.breadcrumbs a {
+    color: var(--industrial-blue-light);
+    text-decoration: none;
+}
+
+/* Careers Content */
+.careers-content {
+    background-color: #e6c87e; /* Gold/beige background from screenshot */
+    padding: 40px;
+    border-radius: 0;
+    position: relative;
+}
+
+.careers-heading {
+    font-size: 2.5rem;
+    color: #000000;
+    margin-bottom: 30px;
+    text-align: center;
+}
+
+.careers-description {
+    margin-bottom: 40px;
+    color: #000000;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.careers-description p {
+    font-size: 1.1rem;
+    line-height: 1.6;
+}
+
+/* Form Styles */
+.careers-form-container {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.careers-form {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 20px;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 500;
+    color: #000000;
+    font-size: 1.1rem;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 12px 15px;
+    border: 1px solid #cccccc;
+    border-radius: 0;
+    background-color: #ffffff;
+    font-size: 1rem;
+    color: #333333;
+}
+
+.form-group input:focus {
+    outline: none;
+    border-color: var(--industrial-blue);
+    box-shadow: 0 0 0 2px rgba(0, 119, 182, 0.2);
+}
+
+.required {
+    color: #ff0000;
+}
+
+/* Submit Button */
+.form-submit {
+    text-align: right;
+    margin-top: 20px;
+}
+
+.submit-button {
+    background-color: #333333;
+    color: #ffffff;
+    border: none;
+    padding: 12px 30px;
+    font-size: 1rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.submit-button:hover {
+    background-color: #444444;
+}
+
+/* Confirmation Messages */
+.application-confirmation,
+.application-error {
+    padding: 15px;
+    margin-top: 20px;
+    border-radius: 4px;
+    text-align: center;
+}
+
+.application-confirmation {
+    background-color: #d4edda;
+    color: #155724;
+    border: 1px solid #c3e6cb;
+}
+
+.application-error {
+    background-color: #f8d7da;
+    color: #721c24;
+    border: 1px solid #f5c6cb;
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+    .careers-content {
+        padding: 30px 20px;
+    }
+    
+    .careers-heading {
+        font-size: 2rem;
+    }
+    
+    .form-submit {
+        text-align: center;
+    }
+    
+    .submit-button {
+        width: 100%;
+    }
+}

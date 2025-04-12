@@ -1,0 +1,208 @@
+/**
+ * Contact Page Styles
+ */
+
+/* Contact Page Layout */
+.contact-page {
+    padding: 60px 0;
+    background-color: var(--industrial-dark-bg);
+    color: var(--industrial-text-light);
+}
+
+.contact-wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 40px;
+}
+
+.contact-form-section {
+    flex: 1;
+    min-width: 300px;
+}
+
+.contact-info-section {
+    flex: 1;
+    min-width: 300px;
+}
+
+/* Contact Title */
+.contact-title {
+    font-size: 3rem;
+    margin-bottom: 30px;
+    text-transform: uppercase;
+    color: #fff;
+}
+
+/* Contact Form Styles */
+.contact-form {
+    margin-top: 30px;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group.full-width {
+    width: 100%;
+}
+
+.contact-form label {
+    display: block;
+    margin-bottom: 5px;
+    font-size: 0.9rem;
+}
+
+.contact-form input[type="text"],
+.contact-form input[type="email"],
+.contact-form input[type="tel"],
+.contact-form textarea {
+    width: 100%;
+    padding: 12px;
+    background-color: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: #fff;
+    font-size: 1rem;
+}
+
+.contact-form input[type="text"]:focus,
+.contact-form input[type="email"]:focus,
+.contact-form input[type="tel"]:focus,
+.contact-form textarea:focus {
+    outline: none;
+    border-color: var(--industrial-yellow);
+}
+
+.submit-button {
+    background-color: var(--industrial-yellow);
+    color: #000;
+    border: none;
+    padding: 12px 30px;
+    font-size: 1rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.submit-button:hover {
+    background-color: var(--industrial-yellow-dark);
+}
+
+/* Company Info Styles */
+.company-info {
+    margin-bottom: 30px;
+}
+
+.company-info h2 {
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+    color: var(--industrial-yellow);
+}
+
+.office-info {
+    margin-bottom: 20px;
+}
+
+.office-info h3 {
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+}
+
+.office-info p {
+    line-height: 1.6;
+    color: var(--industrial-text-muted);
+}
+
+/* Map Container */
+.map-container {
+    height: 300px;
+    margin-top: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Fixed Footer Navigation */
+.footer-fixed-nav {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background-color: var(--industrial-footer-bg);
+    padding: 15px 0;
+    z-index: 100;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.footer-nav-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.footer-nav-left {
+    display: flex;
+    align-items: center;
+}
+
+.footer-nav-logo {
+    max-height: 40px;
+    margin-right: 20px;
+}
+
+.footer-nav-info {
+    font-size: 0.9rem;
+    color: var(--industrial-text-muted);
+}
+
+.footer-nav-categories {
+    display: flex;
+    gap: 20px;
+}
+
+.footer-nav-category {
+    color: var(--industrial-yellow);
+    font-weight: bold;
+    text-transform: uppercase;
+    font-size: 0.9rem;
+}
+
+.footer-nav-social {
+    display: flex;
+    gap: 15px;
+}
+
+.footer-nav-social a {
+    color: var(--industrial-text-light);
+    font-size: 1.2rem;
+    transition: color 0.3s;
+}
+
+.footer-nav-social a:hover {
+    color: var(--industrial-yellow);
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+    .contact-wrapper {
+        flex-direction: column;
+    }
+    
+    .footer-nav-container {
+        flex-direction: column;
+        gap: 15px;
+        text-align: center;
+    }
+    
+    .footer-nav-left {
+        flex-direction: column;
+    }
+    
+    .footer-nav-logo {
+        margin-right: 0;
+        margin-bottom: 10px;
+    }
+    
+    .footer-nav-categories {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+}

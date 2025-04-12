@@ -1,0 +1,721 @@
+/*
+Theme Name: Industrial
+Theme URI: http://example.com/industrial/
+Author: Trae AI
+Author URI: http://example.com/
+Description: A modern industrial-themed WordPress theme with dark background and blue-yellow color scheme, designed for industrial businesses.
+Version: 1.0
+License: GNU General Public License v2 or later
+License URI: http://www.gnu.org/licenses/gpl-2.0.html
+Tags: custom-background, custom-logo, custom-menu, featured-images, responsive-layout, industrial, dark
+Text Domain: industrial
+*/
+
+/*--------------------------------------------------------------
+>>> TABLE OF CONTENTS:
+----------------------------------------------------------------
+# Variables
+# Global
+# Header
+# Navigation
+# Hero Section
+# About Section
+# Products/Solutions Section
+# Geometric Section
+# Footer
+# Utilities / Helpers
+--------------------------------------------------------------*/
+
+/*--------------------------------------------------------------
+# Variables
+--------------------------------------------------------------*/
+:root {
+  --industrial-dark-bg: #121212;
+  --industrial-dark-secondary: #1a1a1a;
+  --industrial-footer-bg: #1f242d;
+  --industrial-text-light: #ffffff;
+  --industrial-text-muted: #cccccc;
+  --industrial-blue: #0077b6;
+  --industrial-blue-light: #00a8e8;
+  --industrial-yellow: #ffc107;
+  --industrial-yellow-dark: #e6a800;
+}
+
+/*--------------------------------------------------------------
+# Global
+--------------------------------------------------------------*/
+body {
+  font-family: 'Arial', sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: var(--industrial-dark-bg);
+  color: var(--industrial-text-light);
+  line-height: 1.6;
+}
+
+a {
+  color: var(--industrial-blue-light);
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+a:hover {
+  color: var(--industrial-yellow);
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-weight: 700;
+  margin-top: 0;
+  margin-bottom: 1rem;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+.container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 15px;
+}
+
+.section {
+  padding: 60px 0;
+}
+
+.section-title {
+  font-size: 2.5rem;
+  margin-bottom: 2rem;
+  text-align: center;
+  text-transform: uppercase;
+  position: relative;
+}
+
+.section-title:after {
+  content: '';
+  display: block;
+  width: 80px;
+  height: 4px;
+  background-color: var(--industrial-yellow);
+  margin: 15px auto 0;
+}
+
+/*--------------------------------------------------------------
+# Header
+--------------------------------------------------------------*/
+.site-header {
+  background-color: var(--industrial-dark-secondary);
+  padding: 15px 0;
+  position: fixed;
+  width: 100%;
+  top: 0;
+  z-index: 1000;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.site-branding {
+  display: flex;
+  align-items: center;
+}
+
+.site-logo {
+  max-height: 60px;
+  width: auto;
+}
+
+.site-title {
+  font-size: 1.8rem;
+  margin: 0;
+  padding: 0;
+}
+
+.site-title a {
+  color: var(--industrial-text-light);
+}
+
+/*--------------------------------------------------------------
+# Navigation
+--------------------------------------------------------------*/
+.main-navigation {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.main-navigation ul {
+  display: flex;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.main-navigation ul li:hover > ul {
+    display: block;
+    animation: fadeIn 0.3s ease-in-out;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.main-navigation li {
+  position: relative;
+  margin-left: 20px;
+}
+
+.main-navigation a {
+  display: block;
+  padding: 10px 15px;
+  color: var(--industrial-text-light);
+  font-weight: 500;
+  text-transform: uppercase;
+  font-size: 0.9rem;
+  letter-spacing: 1px;
+}
+
+.main-navigation a:hover {
+  color: var(--industrial-yellow);
+}
+
+.header-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.social-links {
+  display: flex;
+  align-items: center;
+}
+
+.social-links a {
+  color: var(--industrial-text-light);
+  margin-left: 15px;
+  font-size: 1.2rem;
+}
+
+.social-links a:hover {
+  color: var(--industrial-yellow);
+}
+
+/*--------------------------------------------------------------
+# Carousel Section
+--------------------------------------------------------------*/
+.cim-carousel-section {
+  margin-top: 90px; /* Adjust based on header height */
+  position: relative;
+}
+
+.cim-carousel {
+  position: relative;
+}
+
+.carousel-item {
+  position: relative;
+  height: 600px;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.carousel-item:before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+}
+
+.carousel-content {
+  position: absolute;
+  bottom: 100px;
+  left: 100px;
+  max-width: 600px;
+  z-index: 1;
+}
+
+.carousel-title {
+  font-size: 3.5rem;
+  margin-bottom: 1rem;
+  color: var(--industrial-yellow);
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+.carousel-description {
+  font-size: 1.5rem;
+  margin-bottom: 2rem;
+  color: var(--industrial-text-light);
+}
+
+/* Slick Slider Custom Styles */
+.slick-prev, .slick-next {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 10;
+  width: 50px;
+  height: 50px;
+  background-color: rgba(0, 0, 0, 0.5);
+  border-radius: 50%;
+  color: var(--industrial-text-light);
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.slick-prev {
+  left: 20px;
+}
+
+.slick-next {
+  right: 20px;
+}
+
+.slick-prev:hover, .slick-next:hover {
+  background-color: var(--industrial-yellow);
+  color: #000;
+}
+
+.slick-dots {
+  position: absolute;
+  bottom: 20px;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: center;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.slick-dots li {
+  margin: 0 5px;
+}
+
+.slick-dots li button {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background-color: rgba(255, 255, 255, 0.5);
+  border: none;
+  font-size: 0;
+  cursor: pointer;
+  padding: 0;
+  transition: background-color 0.3s ease;
+}
+
+.slick-dots li.slick-active button {
+  background-color: var(--industrial-yellow);
+}
+
+/*--------------------------------------------------------------
+# About Section
+--------------------------------------------------------------*/
+.about-section {
+  background-color: var(--industrial-dark-secondary);
+  padding: 80px 0;
+}
+
+.about-container {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.about-image {
+  flex: 0 0 40%;
+  padding: 0 15px;
+}
+
+.about-content {
+  flex: 0 0 60%;
+  padding: 0 15px;
+}
+
+.about-title {
+  font-size: 2.5rem;
+  margin-bottom: 1.5rem;
+  text-transform: uppercase;
+}
+
+.about-text {
+  margin-bottom: 2rem;
+  font-size: 1.1rem;
+  line-height: 1.8;
+}
+
+.read-more-button {
+  display: inline-block;
+  padding: 10px 25px;
+  background-color: var(--industrial-blue);
+  color: var(--industrial-text-light);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  border-radius: 4px;
+  transition: background-color 0.3s ease;
+}
+
+.read-more-button:hover {
+  background-color: var(--industrial-blue-light);
+  color: var(--industrial-text-light);
+}
+
+/*--------------------------------------------------------------
+# Products/Solutions Section
+--------------------------------------------------------------*/
+.products-section {
+  background-color: var(--industrial-dark-bg);
+  padding: 80px 0;
+}
+
+.products-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 30px;
+  margin-top: 40px;
+}
+
+.product-item {
+  background-color: var(--industrial-dark-secondary);
+  border-radius: 8px;
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.product-item:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+.product-image {
+  height: 200px;
+  background-size: cover;
+  background-position: center;
+}
+
+.product-content {
+  padding: 20px;
+}
+
+.product-title {
+  font-size: 1.5rem;
+  margin-bottom: 10px;
+}
+
+.product-description {
+  margin-bottom: 15px;
+  color: var(--industrial-text-muted);
+}
+
+.product-link {
+  display: inline-block;
+  color: var(--industrial-yellow);
+  font-weight: 600;
+  text-transform: uppercase;
+  font-size: 0.9rem;
+  letter-spacing: 1px;
+}
+
+.product-link i {
+  margin-left: 5px;
+  transition: transform 0.3s ease;
+}
+
+.product-link:hover i {
+  transform: translateX(5px);
+}
+
+/* Product Category Styles */
+.product-category {
+  text-align: center;
+  margin-bottom: 30px;
+  transition: transform 0.3s ease;
+}
+
+.product-category:hover {
+  transform: translateY(-10px);
+}
+
+.category-thumbnail {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  overflow: hidden;
+  margin: 0 auto 15px;
+  border: 3px solid var(--industrial-yellow);
+  transition: border-color 0.3s ease;
+}
+
+.product-category:hover .category-thumbnail {
+  border-color: var(--industrial-blue);
+}
+
+.category-thumbnail img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.category-title {
+  font-size: 1.2rem;
+  margin: 0;
+  color: var(--industrial-text-light);
+  transition: color 0.3s ease;
+}
+
+.product-category:hover .category-title {
+  color: var(--industrial-yellow);
+}
+
+/*--------------------------------------------------------------
+# Geometric Section
+--------------------------------------------------------------*/
+.geometric-section {
+  position: relative;
+  height: 300px;
+  overflow: hidden;
+}
+
+.geometric-bg {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.geometric-shape {
+  flex: 1 0 33.333%;
+  height: 50%;
+}
+
+.shape-1 {
+  background-color: var(--industrial-blue);
+  clip-path: polygon(0 0, 100% 0, 50% 100%);
+}
+
+.shape-2 {
+  background-color: var(--industrial-blue-light);
+  clip-path: polygon(0 0, 100% 0, 100% 100%);
+}
+
+.shape-3 {
+  background-color: var(--industrial-yellow);
+  clip-path: polygon(0 0, 100% 100%, 0 100%);
+}
+
+.shape-4 {
+  background-color: #00a8e8;
+  clip-path: polygon(0 0, 100% 0, 100% 100%, 0 50%);
+}
+
+.shape-5 {
+  background-color: #0077b6;
+  clip-path: polygon(0 50%, 100% 0, 100% 100%, 0 100%);
+}
+
+.shape-6 {
+  background-color: var(--industrial-yellow-dark);
+  clip-path: polygon(0 0, 100% 50%, 100% 100%, 0 100%);
+}
+
+/*--------------------------------------------------------------
+# Footer
+--------------------------------------------------------------*/
+.site-footer {
+  background-color: var(--industrial-footer-bg);
+  padding: 60px 0 30px;
+  color: var(--industrial-text-muted);
+}
+
+.footer-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.footer-column {
+  flex: 1;
+  min-width: 250px;
+  margin-bottom: 30px;
+  padding: 0 15px;
+}
+
+.footer-title {
+  color: var(--industrial-text-light);
+  font-size: 1.2rem;
+  margin-bottom: 20px;
+  position: relative;
+  padding-bottom: 10px;
+}
+
+.footer-title:after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 40px;
+  height: 3px;
+  background-color: var(--industrial-yellow);
+}
+
+.footer-menu {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.footer-menu li {
+  margin-bottom: 10px;
+}
+
+.footer-menu a {
+  color: var(--industrial-text-muted);
+  transition: color 0.3s ease;
+}
+
+.footer-menu a:hover {
+  color: var(--industrial-yellow);
+}
+
+.footer-contact-item {
+  display: flex;
+  align-items: flex-start;
+  margin-bottom: 15px;
+}
+
+.contact-icon {
+  margin-right: 10px;
+  color: var(--industrial-yellow);
+}
+
+.footer-bottom {
+  text-align: center;
+  padding-top: 30px;
+  margin-top: 30px;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.footer-logo {
+  max-width: 150px;
+  margin-bottom: 20px;
+}
+
+.footer-social {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.footer-social a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  background-color: rgba(255, 255, 255, 0.1);
+  color: var(--industrial-text-light);
+  border-radius: 50%;
+  margin: 0 5px;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.footer-social a:hover {
+  background-color: var(--industrial-yellow);
+  color: #000;
+}
+
+.copyright {
+  font-size: 0.9rem;
+}
+
+/*--------------------------------------------------------------
+# Responsive Styles
+--------------------------------------------------------------*/
+@media (max-width: 991px) {
+  .about-image,
+  .about-content {
+    flex: 0 0 100%;
+  }
+  
+  .about-image {
+    margin-bottom: 30px;
+  }
+  
+  .hero-title {
+    font-size: 2.8rem;
+  }
+  
+  .hero-subtitle {
+    font-size: 1.3rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .header-container {
+    flex-direction: column;
+  }
+  
+  .site-branding {
+    margin-bottom: 15px;
+  }
+  
+  .main-navigation {
+    justify-content: center;
+  }
+  
+  .main-navigation li {
+    margin: 0 10px;
+  }
+  
+  .hero-title {
+    font-size: 2.2rem;
+  }
+  
+  .hero-subtitle {
+    font-size: 1.1rem;
+  }
+  
+  .section-title {
+    font-size: 2rem;
+  }
+  
+  .products-grid {
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  }
+}
+
+@media (max-width: 576px) {
+  .main-navigation ul {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  
+  .main-navigation li {
+    margin: 5px;
+  }
+  
+  .hero-title {
+    font-size: 1.8rem;
+  }
+  
+  .hero-subtitle {
+    font-size: 1rem;
+  }
+  
+  .section-title {
+    font-size: 1.8rem;
+  }
+  
+  .footer-column {
+    flex: 0 0 100%;
+  }
+}
