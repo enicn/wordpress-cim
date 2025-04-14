@@ -1,0 +1,133 @@
+/**
+ * About section styles for CIM theme
+ */
+
+/* About Section Container */
+.about-section {
+  position: relative;
+  overflow: hidden;
+  padding: 0;
+}
+
+/* Background image for the right side */
+.about-section {
+  background-color: var(--industrial-dark-secondary);
+  background-size: cover;
+  background-position: right center;
+  background-repeat: no-repeat;
+}
+
+.about-section::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 50%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.7);
+  z-index: -1;
+}
+
+/* Container for the about content */
+.about-container {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: stretch;
+  position: relative;
+  padding: 0;
+}
+
+/* Left side - Person image */
+.about-image {
+  flex: 0 0 50%;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+}
+
+/* Right side - Content */
+.about-content {
+  flex: 1;
+  padding: 30px;
+  background-color: rgba(0, 0, 0, 0.8);
+  color: var(--industrial-text-light);
+  border-radius: 5px;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+}
+
+.about-title {
+  font-size: 2.5rem;
+  margin-bottom: 1.5rem;
+  text-transform: uppercase;
+  color: #fff;
+  letter-spacing: 2px;
+}
+
+.about-text {
+  margin-bottom: 2rem;
+  font-size: 1.1rem;
+  line-height: 1.8;
+}
+
+.read-more-button {
+  display: inline-block;
+  padding: 12px 30px;
+  background-color: var(--industrial-blue);
+  color: var(--industrial-text-light);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  border-radius: 4px;
+  transition: background-color 0.3s ease;
+  text-decoration: none;
+}
+
+.read-more-button:hover {
+  background-color: var(--industrial-yellow);
+  color: var(--industrial-dark-bg);
+  text-decoration: none;
+}
+
+/* Responsive adjustments */
+@media (max-width: 992px) {
+  .about-section::after {
+    width: 100%;
+    opacity: 0.2;
+  }
+  
+  .about-image {
+    flex: 0 0 100%;
+    margin-bottom: 30px;
+    text-align: center;
+  }
+  
+  .about-image img {
+    max-width: 80%;
+  }
+  
+  .about-content {
+    flex: 0 0 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+  }
+}
+
+@media (max-width: 768px) {
+  .about-image img {
+    max-width: 100%;
+  }
+  
+  .about-title {
+    font-size: 2rem;
+  }
+  
+  .about-text {
+    font-size: 1rem;
+  }
+  
+  .read-more-button {
+    padding: 10px 20px;
+    font-size: 0.9rem;
+  }
+}

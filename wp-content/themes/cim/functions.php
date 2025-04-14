@@ -1,28 +1,43 @@
 <?php
 /**
- * Industrial Theme functions and definitions
+ * cim Theme functions and definitions
  *
  * @link https://developer.wordpress.org/themes/basics/theme-functions/
  *
- * @package Industrial
+ * @package cim
  */
 
-if ( ! defined( 'INDUSTRIAL_VERSION' ) ) {
+if ( ! defined( 'cim_VERSION' ) ) {
 	// Replace the version number of the theme on each release.
-	define( 'INDUSTRIAL_VERSION', '1.0.0' );
+	define( 'cim_VERSION', '1.0.1' );
 }
 
 // Include custom menu walker
 require get_template_directory() . '/inc/class-cim-menu-walker.php';
 
+// Include menu template redirect functions
+require get_template_directory() . '/inc/menu-template-redirect.php';
+
+// Include custom post types for form submissions
+require get_template_directory() . '/inc/custom-post-types.php';
+
+// Include form handlers
+require get_template_directory() . '/inc/form-handlers.php';
+
+// Include news page settings
+require get_template_directory() . '/inc/news-page-settings.php';
+
+// Include technologies page settings
+require get_template_directory() . '/inc/technologies-settings.php';
+
 /**
  * Sets up theme defaults and registers support for various WordPress features.
  */
-function industrial_setup() {
+function cim_setup() {
 	/*
 	 * Make theme available for translation.
 	 */
-	load_theme_textdomain( 'industrial', get_template_directory() . '/languages' );
+	load_theme_textdomain( 'cim', get_template_directory() . '/languages' );
 
 	// Add default posts and comments RSS feed links to head.
 	add_theme_support( 'automatic-feed-links' );
@@ -40,8 +55,8 @@ function industrial_setup() {
 	// This theme uses wp_nav_menu() in one location.
 	register_nav_menus(
 		array(
-			'primary' => esc_html__( 'Primary Menu', 'industrial' ),
-			'footer' => esc_html__( 'Footer Menu', 'industrial' ),
+			'primary' => esc_html__( 'Primary Menu', 'cim' ),
+			'footer' => esc_html__( 'Footer Menu', 'cim' ),
 		)
 	);
 
@@ -66,7 +81,7 @@ function industrial_setup() {
 	add_theme_support(
 		'custom-background',
 		apply_filters(
-			'industrial_custom_background_args',
+			'cim_custom_background_args',
 			array(
 				'default-color' => '121212',
 				'default-image' => '',
@@ -90,7 +105,7 @@ function industrial_setup() {
 		)
 	);
 }
-add_action( 'after_setup_theme', 'industrial_setup' );
+add_action( 'after_setup_theme', 'cim_setup' );
 
 /**
  * Set the content width in pixels, based on the theme's design and stylesheet.
@@ -99,20 +114,20 @@ add_action( 'after_setup_theme', 'industrial_setup' );
  *
  * @global int $content_width
  */
-function industrial_content_width() {
-	$GLOBALS['content_width'] = apply_filters( 'industrial_content_width', 1200 );
+function cim_content_width() {
+	$GLOBALS['content_width'] = apply_filters( 'cim_content_width', 1200 );
 }
-add_action( 'after_setup_theme', 'industrial_content_width', 0 );
+add_action( 'after_setup_theme', 'cim_content_width', 0 );
 
 /**
  * Register widget area.
  */
-function industrial_widgets_init() {
+function cim_widgets_init() {
 	register_sidebar(
 		array(
-			'name'          => esc_html__( 'Sidebar', 'industrial' ),
+			'name'          => esc_html__( 'Sidebar', 'cim' ),
 			'id'            => 'sidebar-1',
-			'description'   => esc_html__( 'Add widgets here.', 'industrial' ),
+			'description'   => esc_html__( 'Add widgets here.', 'cim' ),
 			'before_widget' => '<section id="%1$s" class="widget %2$s">',
 			'after_widget'  => '</section>',
 			'before_title'  => '<h2 class="widget-title">',
@@ -122,9 +137,9 @@ function industrial_widgets_init() {
 	
 	register_sidebar(
 		array(
-			'name'          => esc_html__( 'Footer 1', 'industrial' ),
+			'name'          => esc_html__( 'Footer 1', 'cim' ),
 			'id'            => 'footer-1',
-			'description'   => esc_html__( 'Add footer widgets here.', 'industrial' ),
+			'description'   => esc_html__( 'Add footer widgets here.', 'cim' ),
 			'before_widget' => '<div id="%1$s" class="widget %2$s">',
 			'after_widget'  => '</div>',
 			'before_title'  => '<h3 class="footer-title">',
@@ -134,9 +149,9 @@ function industrial_widgets_init() {
 	
 	register_sidebar(
 		array(
-			'name'          => esc_html__( 'Footer 2', 'industrial' ),
+			'name'          => esc_html__( 'Footer 2', 'cim' ),
 			'id'            => 'footer-2',
-			'description'   => esc_html__( 'Add footer widgets here.', 'industrial' ),
+			'description'   => esc_html__( 'Add footer widgets here.', 'cim' ),
 			'before_widget' => '<div id="%1$s" class="widget %2$s">',
 			'after_widget'  => '</div>',
 			'before_title'  => '<h3 class="footer-title">',
@@ -146,9 +161,9 @@ function industrial_widgets_init() {
 	
 	register_sidebar(
 		array(
-			'name'          => esc_html__( 'Footer 3', 'industrial' ),
+			'name'          => esc_html__( 'Footer 3', 'cim' ),
 			'id'            => 'footer-3',
-			'description'   => esc_html__( 'Add footer widgets here.', 'industrial' ),
+			'description'   => esc_html__( 'Add footer widgets here.', 'cim' ),
 			'before_widget' => '<div id="%1$s" class="widget %2$s">',
 			'after_widget'  => '</div>',
 			'before_title'  => '<h3 class="footer-title">',
@@ -156,17 +171,17 @@ function industrial_widgets_init() {
 		)
 	);
 }
-add_action( 'widgets_init', 'industrial_widgets_init' );
+add_action( 'widgets_init', 'cim_widgets_init' );
 
 /**
  * Enqueue scripts and styles.
  */
-function industrial_scripts() {
+function cim_scripts() {
 	// Enqueue main stylesheet
-	wp_enqueue_style( 'industrial-style', get_stylesheet_uri(), array(), INDUSTRIAL_VERSION );
+	wp_enqueue_style( 'cim-style', get_stylesheet_uri(), array(), cim_VERSION );
 	
 	// Enqueue Font Awesome for icons
-	wp_enqueue_style( 'industrial-fontawesome', 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css', array(), '5.15.4' );
+	wp_enqueue_style( 'cim-fontawesome', 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css', array(), '5.15.4' );
 	
 	// Enqueue Slick Slider
 	wp_enqueue_style( 'slick', 'https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css', array(), '1.8.1' );
@@ -174,30 +189,39 @@ function industrial_scripts() {
 	wp_enqueue_script( 'slick', 'https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js', array('jquery'), '1.8.1', true );
 	
 	// Enqueue custom CSS
-	wp_enqueue_style( 'industrial-menu-page', get_template_directory_uri() . '/assets/css/menu-page.css', array(), INDUSTRIAL_VERSION );
+	wp_enqueue_style( 'cim-menu-page', get_template_directory_uri() . '/assets/css/menu-page.css', array(), cim_VERSION );
+	
+	// Enqueue carousel and about CSS for front page
+	if (is_front_page()) {
+		wp_enqueue_style( 'cim-carousel', get_template_directory_uri() . '/assets/css/carousel.css', array(), cim_VERSION );
+		wp_enqueue_style( 'cim-about', get_template_directory_uri() . '/assets/css/about.css', array(), cim_VERSION );
+		wp_enqueue_style( 'cim-category-thumbnails', get_template_directory_uri() . '/assets/css/category-thumbnails.css', array(), cim_VERSION );
+	}
 	
 	// Enqueue careers page CSS and JS
 	if (is_page_template('page-careers.php')) {
-		wp_enqueue_style( 'industrial-careers', get_template_directory_uri() . '/assets/css/careers.css', array(), INDUSTRIAL_VERSION );
-		wp_enqueue_script( 'industrial-careers', get_template_directory_uri() . '/assets/js/careers.js', array('jquery'), INDUSTRIAL_VERSION, true );
+		wp_enqueue_style( 'cim-careers', get_template_directory_uri() . '/assets/css/careers.css', array(), cim_VERSION );
+		wp_enqueue_script( 'cim-careers', get_template_directory_uri() . '/assets/js/careers.js', array('jquery'), cim_VERSION, true );
 	}
 	
 	// Enqueue contact page CSS
 	if (is_page_template('page-contact.php')) {
-		wp_enqueue_style( 'industrial-contact', get_template_directory_uri() . '/assets/css/contact.css', array(), INDUSTRIAL_VERSION );
+		wp_enqueue_style( 'cim-contact', get_template_directory_uri() . '/assets/css/contact.css', array(), cim_VERSION );
+	}
+	
+	// Enqueue technologies page CSS
+	if (is_page_template('page-technologies.php')) {
+		wp_enqueue_style( 'cim-technologies', get_template_directory_uri() . '/assets/css/technologies.css', array(), cim_VERSION );
 	}
 	
 	// Enqueue custom JavaScript
-	wp_enqueue_script( 'industrial-navigation', get_template_directory_uri() . '/assets/js/navigation.js', array(), INDUSTRIAL_VERSION, true );
+	wp_enqueue_script( 'cim-navigation', get_template_directory_uri() . '/assets/js/navigation.js', array(), cim_VERSION, true );
 	
-	// Enqueue custom slider script
-	wp_enqueue_script( 'industrial-slider', get_template_directory_uri() . '/assets/js/slider.js', array('jquery', 'slick'), INDUSTRIAL_VERSION, true );
-
 	if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
 		wp_enqueue_script( 'comment-reply' );
 	}
 }
-add_action( 'wp_enqueue_scripts', 'industrial_scripts' );
+add_action( 'wp_enqueue_scripts', 'cim_scripts' );
 
 /**
  * Custom template tags for this theme.
@@ -212,7 +236,7 @@ require get_template_directory() . '/inc/template-functions.php';
 /**
  * Create directory structure if it doesn't exist
  */
-function industrial_create_directories() {
+function cim_create_directories() {
     $directories = array(
         '/inc',
         '/js',
@@ -226,150 +250,33 @@ function industrial_create_directories() {
         }
     }
 }
-add_action('after_switch_theme', 'industrial_create_directories');
+add_action('after_switch_theme', 'cim_create_directories');
 
-/**
- * Add custom CSS for dropdown menu
- */
-function cim_custom_styles() {
-    ?>
-    <style type="text/css">
-        /* Header Menu Styles */
-        .main-navigation ul ul {
-            display: none;
-            position: absolute;
-            top: 100%;
-            left: 0;
-            z-index: 99999;
-            background-color: #1a1a1a;
-            min-width: 200px;
-            box-shadow: 0 3px 5px rgba(0, 0, 0, 0.2);
-            padding: 10px 0;
-        }
-        
-        .main-navigation ul li:hover > ul {
-            display: block;
-        }
-        
-        .main-navigation ul ul li {
-            margin: 0;
-            width: 100%;
-        }
-        
-        .main-navigation ul ul a {
-            padding: 10px 20px;
-            width: 100%;
-            font-size: 0.85rem;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-        }
-        
-        .main-navigation ul ul li:last-child a {
-            border-bottom: none;
-        }
-        
-        .main-navigation ul ul a:hover {
-            background-color: rgba(255, 255, 255, 0.1);
-        }
-        
-        /* Carousel Styles */
-        .cim-carousel {
-            position: relative;
-            margin-top: 90px;
-        }
-        
-        .carousel-item {
-            position: relative;
-            height: 600px;
-            background-size: cover;
-            background-position: center;
-        }
-        
-        .carousel-item:before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: rgba(0, 0, 0, 0.5);
-        }
-        
-        .carousel-content {
-            position: absolute;
-            bottom: 100px;
-            left: 100px;
-            max-width: 600px;
-            color: #fff;
-            z-index: 2;
-        }
-        
-        .carousel-title {
-            font-size: 3rem;
-            margin-bottom: 1rem;
-            color: #ffc107;
-            text-transform: uppercase;
-        }
-        
-        .carousel-description {
-            font-size: 1.2rem;
-            margin-bottom: 2rem;
-        }
-        
-        /* Product Category Styles */
-        .product-category {
-            text-align: center;
-            margin-bottom: 30px;
-        }
-        
-        .category-thumbnail {
-            width: 150px;
-            height: 150px;
-            border-radius: 50%;
-            overflow: hidden;
-            margin: 0 auto 15px;
-            border: 3px solid #ffc107;
-        }
-        
-        .category-thumbnail img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-        
-        .category-title {
-            font-size: 1.2rem;
-            margin: 0;
-            color: #fff;
-        }
-    </style>
-    <?php
-}
-add_action('wp_head', 'cim_custom_styles');
 
 /**
  * Register Carousel Post Type
  */
 function cim_register_carousel_post_type() {
     $labels = array(
-        'name'               => _x( 'Carousel Slides', 'post type general name', 'industrial' ),
-        'singular_name'      => _x( 'Carousel Slide', 'post type singular name', 'industrial' ),
-        'menu_name'          => _x( 'Carousel Slides', 'admin menu', 'industrial' ),
-        'name_admin_bar'     => _x( 'Carousel Slide', 'add new on admin bar', 'industrial' ),
-        'add_new'            => _x( 'Add New', 'carousel slide', 'industrial' ),
-        'add_new_item'       => __( 'Add New Carousel Slide', 'industrial' ),
-        'new_item'           => __( 'New Carousel Slide', 'industrial' ),
-        'edit_item'          => __( 'Edit Carousel Slide', 'industrial' ),
-        'view_item'          => __( 'View Carousel Slide', 'industrial' ),
-        'all_items'          => __( 'All Carousel Slides', 'industrial' ),
-        'search_items'       => __( 'Search Carousel Slides', 'industrial' ),
-        'parent_item_colon'  => __( 'Parent Carousel Slides:', 'industrial' ),
-        'not_found'          => __( 'No carousel slides found.', 'industrial' ),
-        'not_found_in_trash' => __( 'No carousel slides found in Trash.', 'industrial' )
+        'name'               => _x( 'Carousel Slides', 'post type general name', 'cim' ),
+        'singular_name'      => _x( 'Carousel Slide', 'post type singular name', 'cim' ),
+        'menu_name'          => _x( 'Carousel Slides', 'admin menu', 'cim' ),
+        'name_admin_bar'     => _x( 'Carousel Slide', 'add new on admin bar', 'cim' ),
+        'add_new'            => _x( 'Add New', 'carousel slide', 'cim' ),
+        'add_new_item'       => __( 'Add New Carousel Slide', 'cim' ),
+        'new_item'           => __( 'New Carousel Slide', 'cim' ),
+        'edit_item'          => __( 'Edit Carousel Slide', 'cim' ),
+        'view_item'          => __( 'View Carousel Slide', 'cim' ),
+        'all_items'          => __( 'All Carousel Slides', 'cim' ),
+        'search_items'       => __( 'Search Carousel Slides', 'cim' ),
+        'parent_item_colon'  => __( 'Parent Carousel Slides:', 'cim' ),
+        'not_found'          => __( 'No carousel slides found.', 'cim' ),
+        'not_found_in_trash' => __( 'No carousel slides found in Trash.', 'cim' )
     );
 
     $args = array(
         'labels'             => $labels,
-        'description'        => __( 'Carousel slides for the homepage', 'industrial' ),
+        'description'        => __( 'Carousel slides for the homepage', 'cim' ),
         'public'             => true,
         'publicly_queryable' => true,
         'show_ui'            => true,
@@ -389,25 +296,182 @@ function cim_register_carousel_post_type() {
 add_action( 'init', 'cim_register_carousel_post_type' );
 
 /**
- * Add Category Thumbnail Field
+ * Register Product Post Type
  */
-function cim_add_category_thumbnail_field() {
+function cim_register_product_post_type() {
+    $labels = array(
+        'name'               => _x( 'Products', 'post type general name', 'cim' ),
+        'singular_name'      => _x( 'Product', 'post type singular name', 'cim' ),
+        'menu_name'          => _x( 'Products', 'admin menu', 'cim' ),
+        'name_admin_bar'     => _x( 'Product', 'add new on admin bar', 'cim' ),
+        'add_new'            => _x( 'Add New', 'product', 'cim' ),
+        'add_new_item'       => __( 'Add New Product', 'cim' ),
+        'new_item'           => __( 'New Product', 'cim' ),
+        'edit_item'          => __( 'Edit Product', 'cim' ),
+        'view_item'          => __( 'View Product', 'cim' ),
+        'all_items'          => __( 'All Products', 'cim' ),
+        'search_items'       => __( 'Search Products', 'cim' ),
+        'parent_item_colon'  => __( 'Parent Products:', 'cim' ),
+        'not_found'          => __( 'No products found.', 'cim' ),
+        'not_found_in_trash' => __( 'No products found in Trash.', 'cim' )
+    );
+
+    $args = array(
+        'labels'             => $labels,
+        'description'        => __( 'Products for the CIM website', 'cim' ),
+        'public'             => true,
+        'publicly_queryable' => true,
+        'show_ui'            => true,
+        'show_in_menu'       => true,
+        'query_var'          => true,
+        'rewrite'            => array( 'slug' => 'product' ),
+        'capability_type'    => 'post',
+        'has_archive'        => true,
+        'hierarchical'       => false,
+        'menu_position'      => null,
+        'supports'           => array( 'title', 'editor', 'thumbnail', 'excerpt' ),
+        'menu_icon'          => 'dashicons-products'
+    );
+
+    register_post_type( 'product', $args );
+    
+    // Register Product Category Taxonomy
+    $category_labels = array(
+        'name'              => _x( 'Product Categories', 'taxonomy general name', 'cim' ),
+        'singular_name'     => _x( 'Product Category', 'taxonomy singular name', 'cim' ),
+        'search_items'      => __( 'Search Product Categories', 'cim' ),
+        'all_items'         => __( 'All Product Categories', 'cim' ),
+        'parent_item'       => __( 'Parent Product Category', 'cim' ),
+        'parent_item_colon' => __( 'Parent Product Category:', 'cim' ),
+        'edit_item'         => __( 'Edit Product Category', 'cim' ),
+        'update_item'       => __( 'Update Product Category', 'cim' ),
+        'add_new_item'      => __( 'Add New Product Category', 'cim' ),
+        'new_item_name'     => __( 'New Product Category Name', 'cim' ),
+        'menu_name'         => __( 'Product Categories', 'cim' ),
+    );
+
+    $category_args = array(
+        'hierarchical'      => true,
+        'labels'            => $category_labels,
+        'show_ui'           => true,
+        'show_admin_column' => true,
+        'query_var'         => true,
+        'rewrite'           => array( 'slug' => 'product-category' ),
+    );
+
+    register_taxonomy( 'product_category', array( 'product' ), $category_args );
+}
+add_action( 'init', 'cim_register_product_post_type' );
+
+/**
+ * Register Blog Category
+ */
+function cim_register_blog_category() {
+    // Check if the category already exists
+    if (!term_exists('blog', 'category')) {
+        wp_insert_term(
+            'Blog', // The term 
+            'category', // The taxonomy
+            array(
+                'description' => 'Blog posts category',
+                'slug'        => 'blog',
+            )
+        );
+    }
+}
+add_action('init', 'cim_register_blog_category');
+
+/**
+ * Add Product Meta Boxes
+ */
+function cim_add_product_meta_boxes() {
+    // Product Short Name
+    add_meta_box(
+        'cim_product_short_name',
+        __('Product Short Name', 'cim'),
+        'cim_product_short_name_callback',
+        'product',
+        'normal',
+        'high'
+    );
+    
+    // Product Gallery
+    add_meta_box(
+        'cim_product_gallery',
+        __('Product Gallery', 'cim'),
+        'cim_product_gallery_callback',
+        'product',
+        'normal',
+        'high'
+    );
+    
+    // Product Video
+    add_meta_box(
+        'cim_product_video',
+        __('Product Video', 'cim'),
+        'cim_product_video_callback',
+        'product',
+        'normal',
+        'high'
+    );
+}
+add_action('add_meta_boxes', 'cim_add_product_meta_boxes');
+
+/**
+ * Product Short Name Meta Box Callback
+ */
+function cim_product_short_name_callback($post) {
+    // Add nonce for security
+    wp_nonce_field('cim_product_short_name_nonce', 'cim_product_short_name_nonce');
+    
+    // Get the short name if it exists
+    $short_name = get_post_meta($post->ID, '_product_short_name', true);
+    
+    // Output the field
+    echo '<label for="product-short-name">' . __('Short Name', 'cim') . '</label>';
+    echo '<input type="text" id="product-short-name" name="product_short_name" value="' . esc_attr($short_name) . '" style="width:100%">';
+    echo '<p class="description">' . __('Enter a short name for this product.', 'cim') . '</p>';
+}
+
+/**
+ * Product Gallery Meta Box Callback
+ */
+function cim_product_gallery_callback($post) {
+    // Add nonce for security
+    wp_nonce_field('cim_product_gallery_nonce', 'cim_product_gallery_nonce');
+    
+    // Get the gallery images if they exist
+    $gallery_images = get_post_meta($post->ID, '_product_gallery', true);
+    
+    // Output the field
+    echo '<div id="product-gallery-container">';
+    echo '<input type="hidden" id="product-gallery" name="product_gallery" value="' . esc_attr($gallery_images) . '">';
+    echo '<div id="product-gallery-preview" class="gallery-preview">';
+    
+    if (!empty($gallery_images)) {
+        $gallery_array = explode(',', $gallery_images);
+        foreach ($gallery_array as $image_id) {
+            $image_url = wp_get_attachment_image_url($image_id, 'thumbnail');
+            if ($image_url) {
+                echo '<div class="gallery-image-preview" data-id="' . esc_attr($image_id) . '">';
+                echo '<img src="' . esc_url($image_url) . '" alt="">';
+                echo '<button type="button" class="remove-gallery-image">×</button>';
+                echo '</div>';
+            }
+        }
+    }
+    
+    echo '</div>';
+    echo '<button type="button" class="button" id="add-gallery-images">' . __('Add Gallery Images', 'cim') . '</button>';
+    echo '</div>';
+    
+    // Add JavaScript for gallery functionality
     ?>
-    <div class="form-field term-thumbnail-wrap">
-        <label for="category-thumbnail"><?php _e( 'Category Thumbnail', 'industrial' ); ?></label>
-        <input type="hidden" id="category-thumbnail-id" name="category-thumbnail-id" value="">
-        <div id="category-thumbnail-preview"></div>
-        <p>
-            <input type="button" class="button button-secondary" id="upload-category-thumbnail" value="<?php _e( 'Upload Thumbnail', 'industrial' ); ?>">
-            <input type="button" class="button button-secondary" id="remove-category-thumbnail" value="<?php _e( 'Remove Thumbnail', 'industrial' ); ?>" style="display:none;">
-        </p>
-        <p class="description"><?php _e( 'Upload a thumbnail for this category', 'industrial' ); ?></p>
-    </div>
     <script type="text/javascript">
         jQuery(document).ready(function($) {
             var mediaUploader;
             
-            $('#upload-category-thumbnail').on('click', function(e) {
+            $('#add-gallery-images').on('click', function(e) {
                 e.preventDefault();
                 
                 if (mediaUploader) {
@@ -416,128 +480,223 @@ function cim_add_category_thumbnail_field() {
                 }
                 
                 mediaUploader = wp.media({
-                    title: '<?php _e( 'Choose Category Thumbnail', 'industrial' ); ?>',
+                    title: '<?php _e("Choose Gallery Images", "cim"); ?>',
                     button: {
-                        text: '<?php _e( 'Set Thumbnail', 'industrial' ); ?>'
+                        text: '<?php _e("Add to Gallery", "cim"); ?>'
                     },
-                    multiple: false
+                    multiple: true
                 });
                 
                 mediaUploader.on('select', function() {
-                    var attachment = mediaUploader.state().get('selection').first().toJSON();
-                    $('#category-thumbnail-id').val(attachment.id);
-                    $('#category-thumbnail-preview').html('<img src="' + attachment.url + '" style="max-width:100%;height:auto;margin-top:10px;" />');
-                    $('#remove-category-thumbnail').show();
+                    var attachments = mediaUploader.state().get('selection').toJSON();
+                    var galleryIds = $('#product-gallery').val();
+                    var idsArray = galleryIds ? galleryIds.split(',') : [];
+                    
+                    attachments.forEach(function(attachment) {
+                        if (idsArray.indexOf(attachment.id.toString()) === -1) {
+                            idsArray.push(attachment.id);
+                            
+                            $('#product-gallery-preview').append(
+                                '<div class="gallery-image-preview" data-id="' + attachment.id + '">'+
+                                '<img src="' + attachment.sizes.thumbnail.url + '" alt="">'+
+                                '<button type="button" class="remove-gallery-image">×</button>'+
+                                '</div>'
+                            );
+                        }
+                    });
+                    
+                    $('#product-gallery').val(idsArray.join(','));
                 });
                 
                 mediaUploader.open();
             });
             
-            $('#remove-category-thumbnail').on('click', function(e) {
-                e.preventDefault();
-                $('#category-thumbnail-id').val('');
-                $('#category-thumbnail-preview').html('');
-                $(this).hide();
+            // Remove gallery image
+            $('#product-gallery-preview').on('click', '.remove-gallery-image', function() {
+                var container = $(this).parent('.gallery-image-preview');
+                var imageId = container.data('id');
+                var galleryIds = $('#product-gallery').val().split(',');
+                
+                galleryIds = galleryIds.filter(function(id) {
+                    return id != imageId;
+                });
+                
+                $('#product-gallery').val(galleryIds.join(','));
+                container.remove();
             });
         });
     </script>
+    <style type="text/css">
+        .gallery-preview {
+            display: flex;
+            flex-wrap: wrap;
+            margin-bottom: 10px;
+        }
+        .gallery-image-preview {
+            position: relative;
+            margin: 5px;
+            width: 100px;
+            height: 100px;
+        }
+        .gallery-image-preview img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .remove-gallery-image {
+            position: absolute;
+            top: 0;
+            right: 0;
+            background: rgba(0,0,0,0.7);
+            color: #fff;
+            border: none;
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            font-size: 14px;
+            line-height: 1;
+            cursor: pointer;
+        }
+    </style>
     <?php
 }
-add_action( 'category_add_form_fields', 'cim_add_category_thumbnail_field' );
 
 /**
- * Edit Category Thumbnail Field
+ * Product Video Meta Box Callback
  */
-function cim_edit_category_thumbnail_field( $term ) {
-    $thumbnail_id = get_term_meta( $term->term_id, 'category_thumbnail_id', true );
-    $thumbnail_url = '';
+function cim_product_video_callback($post) {
+    // Add nonce for security
+    wp_nonce_field('cim_product_video_nonce', 'cim_product_video_nonce');
     
-    if ( $thumbnail_id ) {
-        $thumbnail_url = wp_get_attachment_url( $thumbnail_id );
-    }
-    ?>
-    <tr class="form-field term-thumbnail-wrap">
-        <th scope="row"><label for="category-thumbnail"><?php _e( 'Category Thumbnail', 'industrial' ); ?></label></th>
-        <td>
-            <input type="hidden" id="category-thumbnail-id" name="category-thumbnail-id" value="<?php echo esc_attr( $thumbnail_id ); ?>">
-            <div id="category-thumbnail-preview">
-                <?php if ( $thumbnail_url ) : ?>
-                    <img src="<?php echo esc_url( $thumbnail_url ); ?>" style="max-width:200px;height:auto;margin-bottom:10px;" />
-                <?php endif; ?>
-            </div>
-            <p>
-                <input type="button" class="button button-secondary" id="upload-category-thumbnail" value="<?php _e( 'Upload Thumbnail', 'industrial' ); ?>">
-                <input type="button" class="button button-secondary" id="remove-category-thumbnail" value="<?php _e( 'Remove Thumbnail', 'industrial' ); ?>" <?php echo $thumbnail_id ? '' : 'style="display:none;"'; ?>>
-            </p>
-            <p class="description"><?php _e( 'Upload a thumbnail for this category', 'industrial' ); ?></p>
-            
-            <script type="text/javascript">
-                jQuery(document).ready(function($) {
-                    var mediaUploader;
-                    
-                    $('#upload-category-thumbnail').on('click', function(e) {
-                        e.preventDefault();
-                        
-                        if (mediaUploader) {
-                            mediaUploader.open();
-                            return;
-                        }
-                        
-                        mediaUploader = wp.media({
-                            title: '<?php _e( 'Choose Category Thumbnail', 'industrial' ); ?>',
-                            button: {
-                                text: '<?php _e( 'Set Thumbnail', 'industrial' ); ?>'
-                            },
-                            multiple: false
-                        });
-                        
-                        mediaUploader.on('select', function() {
-                            var attachment = mediaUploader.state().get('selection').first().toJSON();
-                            $('#category-thumbnail-id').val(attachment.id);
-                            $('#category-thumbnail-preview').html('<img src="' + attachment.url + '" style="max-width:200px;height:auto;margin-bottom:10px;" />');
-                            $('#remove-category-thumbnail').show();
-                        });
-                        
-                        mediaUploader.open();
-                    });
-                    
-                    $('#remove-category-thumbnail').on('click', function(e) {
-                        e.preventDefault();
-                        $('#category-thumbnail-id').val('');
-                        $('#category-thumbnail-preview').html('');
-                        $(this).hide();
-                    });
-                });
-            </script>
-        </td>
-    </tr>
-    <?php
+    // Get the video URL if it exists
+    $video_url = get_post_meta($post->ID, '_product_video', true);
+    
+    // Output the field
+    echo '<label for="product-video">' . __('Video URL', 'cim') . '</label>';
+    echo '<input type="url" id="product-video" name="product_video" value="' . esc_url($video_url) . '" style="width:100%" placeholder="https://www.youtube.com/watch?v=...">';
+    echo '<p class="description">' . __('Enter a YouTube or Vimeo URL for the product introduction video.', 'cim') . '</p>';
 }
-add_action( 'category_edit_form_fields', 'cim_edit_category_thumbnail_field' );
 
 /**
- * Save Category Thumbnail
+ * Save Product Meta Data
  */
-function cim_save_category_thumbnail( $term_id ) {
-    if ( isset( $_POST['category-thumbnail-id'] ) ) {
-        update_term_meta( $term_id, 'category_thumbnail_id', absint( $_POST['category-thumbnail-id'] ) );
+function cim_save_product_meta($post_id) {
+    // Save Short Name
+    if (isset($_POST['cim_product_short_name_nonce']) && wp_verify_nonce($_POST['cim_product_short_name_nonce'], 'cim_product_short_name_nonce')) {
+        if (isset($_POST['product_short_name'])) {
+            update_post_meta($post_id, '_product_short_name', sanitize_text_field($_POST['product_short_name']));
+        }
+    }
+    
+    // Save Gallery
+    if (isset($_POST['cim_product_gallery_nonce']) && wp_verify_nonce($_POST['cim_product_gallery_nonce'], 'cim_product_gallery_nonce')) {
+        if (isset($_POST['product_gallery'])) {
+            update_post_meta($post_id, '_product_gallery', sanitize_text_field($_POST['product_gallery']));
+        }
+    }
+    
+    // Save Video
+    if (isset($_POST['cim_product_video_nonce']) && wp_verify_nonce($_POST['cim_product_video_nonce'], 'cim_product_video_nonce')) {
+        if (isset($_POST['product_video'])) {
+            update_post_meta($post_id, '_product_video', esc_url_raw($_POST['product_video']));
+        }
     }
 }
-add_action( 'created_category', 'cim_save_category_thumbnail' );
-add_action( 'edited_category', 'cim_save_category_thumbnail' );
+add_action('save_post_product', 'cim_save_product_meta');
 
 /**
- * Get Category Thumbnail URL
+ * Add Carousel Redirect URL Meta Box
  */
-function cim_get_category_thumbnail_url( $term_id, $size = 'thumbnail' ) {
-    $thumbnail_id = get_term_meta( $term_id, 'category_thumbnail_id', true );
-    
-    if ( $thumbnail_id ) {
-        return wp_get_attachment_image_url( $thumbnail_id, $size );
+function cim_add_carousel_meta_boxes() {
+    add_meta_box(
+        'cim_carousel_redirect',
+        __('Redirect Link', 'cim'),
+        'cim_carousel_redirect_callback',
+        'carousel',
+        'normal',
+        'default'
+    );
+}
+add_action('add_meta_boxes', 'cim_add_carousel_meta_boxes');
+
+/**
+ * Add Default Carousel Link to Customizer
+ */
+function cim_customize_carousel_settings($wp_customize) {
+    // Add section if it doesn't exist
+    if (!$wp_customize->get_section('cim_carousel_settings')) {
+        $wp_customize->add_section('cim_carousel_settings', array(
+            'title' => __('Carousel Settings', 'cim'),
+            'priority' => 30,
+        ));
     }
     
-    return '';
+    // Add default carousel link setting
+    $wp_customize->add_setting('cim_default_carousel_link', array(
+        'default' => '#',
+        'sanitize_callback' => 'esc_url_raw',
+    ));
+    
+    // Add default carousel link control
+    $wp_customize->add_control('cim_default_carousel_link', array(
+        'label' => __('Default Carousel Link', 'cim'),
+        'description' => __('Enter a URL for the default carousel slide link', 'cim'),
+        'section' => 'cim_carousel_settings',
+        'type' => 'url',
+    ));
 }
+add_action('customize_register', 'cim_customize_carousel_settings');
+
+/**
+ * Carousel Redirect Meta Box Callback
+ */
+function cim_carousel_redirect_callback($post) {
+    // Add nonce for security
+    wp_nonce_field('cim_carousel_redirect_nonce', 'cim_carousel_redirect_nonce');
+    
+    // Get the redirect URL if it exists
+    $redirect_url = get_post_meta($post->ID, '_carousel_redirect_url', true);
+    
+    // Output the field
+    echo '<label for="carousel-redirect-url">' . __('Redirect URL', 'cim') . '</label>';
+    echo '<input type="url" id="carousel-redirect-url" name="carousel_redirect_url" value="' . esc_url($redirect_url) . '" style="width:100%" placeholder="' . __('https://example.com', 'cim') . '">';
+    echo '<p class="description">' . __('Enter a URL to redirect to when this carousel slide is clicked. Leave empty for no redirection.', 'cim') . '</p>';
+}
+
+/**
+ * Save Carousel Redirect URL
+ */
+function cim_save_carousel_redirect($post_id) {
+    // Check if nonce is set
+    if (!isset($_POST['cim_carousel_redirect_nonce'])) {
+        return;
+    }
+    
+    // Verify nonce
+    if (!wp_verify_nonce($_POST['cim_carousel_redirect_nonce'], 'cim_carousel_redirect_nonce')) {
+        return;
+    }
+    
+    // If this is an autosave, don't do anything
+    if (defined('DOING_AUTOSAVE') && DOING_AUTOSAVE) {
+        return;
+    }
+    
+    // Check user permissions
+    if (!current_user_can('edit_post', $post_id)) {
+        return;
+    }
+    
+    // Save the redirect URL
+    if (isset($_POST['carousel_redirect_url'])) {
+        $redirect_url = esc_url_raw($_POST['carousel_redirect_url']);
+        update_post_meta($post_id, '_carousel_redirect_url', $redirect_url);
+    }
+}
+add_action('save_post_carousel', 'cim_save_carousel_redirect');
+
+// Include category thumbnail functions
+require get_template_directory() . '/inc/category-thumbnail.php';
 
 /**
  * Add Theme Customizer Settings
@@ -545,162 +704,186 @@ function cim_get_category_thumbnail_url( $term_id, $size = 'thumbnail' ) {
 function cim_customize_register( $wp_customize ) {
     // About Us Section Settings
     $wp_customize->add_section( 'cim_about_section', array(
-        'title'    => __( 'About Us Section', 'industrial' ),
+        'title'    => __( 'About Us Section', 'cim' ),
         'priority' => 30,
     ) );
     
-    // About Us Image
-    $wp_customize->add_setting( 'industrial_about_image', array(
-        'default'           => get_template_directory_uri() . '/images/about-image.jpg',
+    // About Us Image (Left side - Person)
+    $wp_customize->add_setting( 'cim_about_image', array(
+        'default'           => get_template_directory_uri() . '/assets/images/CIM-Brochure-2022-Latest-Cover.webp',
         'sanitize_callback' => 'esc_url_raw',
     ) );
     
-    $wp_customize->add_control( new WP_Customize_Image_Control( $wp_customize, 'industrial_about_image', array(
-        'label'    => __( 'About Us Image', 'industrial' ),
+    $wp_customize->add_control( new WP_Customize_Image_Control( $wp_customize, 'cim_about_image', array(
+        'label'    => __( 'About Us Person Image (Left Side)', 'cim' ),
         'section'  => 'cim_about_section',
-        'settings' => 'industrial_about_image',
+        'settings' => 'cim_about_image',
+    ) ) );
+    
+    // About Us Background Image (Right side)
+    $wp_customize->add_setting( 'cim_about_bg_image', array(
+        'default'           => get_template_directory_uri() . '/assets/images/BG-DARK.webp',
+        'sanitize_callback' => 'esc_url_raw',
+    ) );
+    
+    $wp_customize->add_control( new WP_Customize_Image_Control( $wp_customize, 'cim_about_bg_image', array(
+        'label'    => __( 'About Us Background Image (Right Side)', 'cim' ),
+        'section'  => 'cim_about_section',
+        'settings' => 'cim_about_bg_image',
     ) ) );
     
     // About Us Title
-    $wp_customize->add_setting( 'industrial_about_title', array(
-        'default'           => __( 'ABOUT US', 'industrial' ),
+    $wp_customize->add_setting( 'cim_about_title', array(
+        'default'           => __( 'ABOUT US', 'cim' ),
         'sanitize_callback' => 'sanitize_text_field',
     ) );
     
-    $wp_customize->add_control( 'industrial_about_title', array(
-        'label'    => __( 'About Us Title', 'industrial' ),
+    $wp_customize->add_control( 'cim_about_title', array(
+        'label'    => __( 'About Us Title', 'cim' ),
         'section'  => 'cim_about_section',
         'type'     => 'text',
     ) );
     
     // About Us Text
-    $wp_customize->add_setting( 'industrial_about_text', array(
-        'default'           => __( 'Industrial is a global leader in wear solutions for industrial applications. We specialize in creating innovative materials designed to withstand extreme conditions in mining, energy, and manufacturing sectors. Our proprietary technologies and extensive experience allow us to deliver exceptional wear resistance and longevity.', 'industrial' ),
+    $wp_customize->add_setting( 'cim_about_text', array(
+        'default'           => __( 'cim is a global leader in wear solutions for cim applications. We specialize in creating innovative materials designed to withstand extreme conditions in mining, energy, and manufacturing sectors. Our proprietary technologies and extensive experience allow us to deliver exceptional wear resistance and longevity.', 'cim' ),
         'sanitize_callback' => 'wp_kses_post',
     ) );
     
-    $wp_customize->add_control( 'industrial_about_text', array(
-        'label'    => __( 'About Us Text', 'industrial' ),
+    $wp_customize->add_control( 'cim_about_text', array(
+        'label'    => __( 'About Us Text', 'cim' ),
         'section'  => 'cim_about_section',
         'type'     => 'textarea',
     ) );
     
     // About Us Button Text
-    $wp_customize->add_setting( 'industrial_about_button_text', array(
-        'default'           => __( 'READ MORE', 'industrial' ),
+    $wp_customize->add_setting( 'cim_about_button_text', array(
+        'default'           => __( 'READ MORE', 'cim' ),
         'sanitize_callback' => 'sanitize_text_field',
     ) );
     
-    $wp_customize->add_control( 'industrial_about_button_text', array(
-        'label'    => __( 'Button Text', 'industrial' ),
+    $wp_customize->add_control( 'cim_about_button_text', array(
+        'label'    => __( 'Button Text', 'cim' ),
         'section'  => 'cim_about_section',
         'type'     => 'text',
     ) );
     
     // About Us Button URL
-    $wp_customize->add_setting( 'industrial_about_button_url', array(
+    $wp_customize->add_setting( 'cim_about_button_url', array(
         'default'           => '#',
         'sanitize_callback' => 'esc_url_raw',
     ) );
     
-    $wp_customize->add_control( 'industrial_about_button_url', array(
-        'label'    => __( 'Button URL', 'industrial' ),
+    $wp_customize->add_control( 'cim_about_button_url', array(
+        'label'    => __( 'Button URL', 'cim' ),
         'section'  => 'cim_about_section',
         'type'     => 'url',
     ) );
     
     // Contact Info Section Settings
     $wp_customize->add_section( 'cim_contact_section', array(
-        'title'    => __( 'Contact Information', 'industrial' ),
+        'title'    => __( 'Contact Information', 'cim' ),
         'priority' => 40,
     ) );
     
     // Contact Address
-    $wp_customize->add_setting( 'industrial_contact_address', array(
-        'default'           => __( '123 Industrial Avenue, Manufacturing District, City, Country', 'industrial' ),
+    $wp_customize->add_setting( 'cim_contact_address', array(
+        'default'           => __( '123 cim Avenue, Manufacturing District, City, Country', 'cim' ),
         'sanitize_callback' => 'sanitize_text_field',
     ) );
     
-    $wp_customize->add_control( 'industrial_contact_address', array(
-        'label'    => __( 'Address', 'industrial' ),
+    $wp_customize->add_control( 'cim_contact_address', array(
+        'label'    => __( 'Address', 'cim' ),
         'section'  => 'cim_contact_section',
         'type'     => 'textarea',
     ) );
     
     // Contact Phone
-    $wp_customize->add_setting( 'industrial_contact_phone', array(
-        'default'           => __( '+1 234 567 8900', 'industrial' ),
+    $wp_customize->add_setting( 'cim_contact_phone', array(
+        'default'           => __( '+1 234 567 8900', 'cim' ),
         'sanitize_callback' => 'sanitize_text_field',
     ) );
     
-    $wp_customize->add_control( 'industrial_contact_phone', array(
-        'label'    => __( 'Phone Number', 'industrial' ),
+    $wp_customize->add_control( 'cim_contact_phone', array(
+        'label'    => __( 'Phone Number', 'cim' ),
         'section'  => 'cim_contact_section',
         'type'     => 'text',
     ) );
     
     // Contact Email
-    $wp_customize->add_setting( 'industrial_contact_email', array(
-        'default'           => __( 'info@industrial-theme.com', 'industrial' ),
+    $wp_customize->add_setting( 'cim_contact_email', array(
+        'default'           => __( 'info@cim-theme.com', 'cim' ),
         'sanitize_callback' => 'sanitize_email',
     ) );
     
-    $wp_customize->add_control( 'industrial_contact_email', array(
-        'label'    => __( 'Email Address', 'industrial' ),
+    $wp_customize->add_control( 'cim_contact_email', array(
+        'label'    => __( 'Email Address', 'cim' ),
         'section'  => 'cim_contact_section',
         'type'     => 'email',
     ) );
     
     // Social Media Section
     $wp_customize->add_section( 'cim_social_section', array(
-        'title'    => __( 'Social Media Links', 'industrial' ),
+        'title'    => __( 'Social Media Links', 'cim' ),
         'priority' => 50,
     ) );
     
     // Facebook URL
-    $wp_customize->add_setting( 'industrial_facebook_url', array(
+    $wp_customize->add_setting( 'cim_facebook_url', array(
         'default'           => '#',
         'sanitize_callback' => 'esc_url_raw',
     ) );
     
-    $wp_customize->add_control( 'industrial_facebook_url', array(
-        'label'    => __( 'Facebook URL', 'industrial' ),
+    $wp_customize->add_control( 'cim_facebook_url', array(
+        'label'    => __( 'Facebook URL', 'cim' ),
         'section'  => 'cim_social_section',
         'type'     => 'url',
     ) );
     
     // Twitter URL
-    $wp_customize->add_setting( 'industrial_twitter_url', array(
+    $wp_customize->add_setting( 'cim_twitter_url', array(
         'default'           => '#',
         'sanitize_callback' => 'esc_url_raw',
     ) );
     
-    $wp_customize->add_control( 'industrial_twitter_url', array(
-        'label'    => __( 'Twitter URL', 'industrial' ),
+    $wp_customize->add_control( 'cim_twitter_url', array(
+        'label'    => __( 'Twitter URL', 'cim' ),
+        'section'  => 'cim_social_section',
+        'type'     => 'url',
+    ) );
+    
+    // Instagram URL
+    $wp_customize->add_setting( 'cim_instagram_url', array(
+        'default'           => '#',
+        'sanitize_callback' => 'esc_url_raw',
+    ) );
+    
+    $wp_customize->add_control( 'cim_instagram_url', array(
+        'label'    => __( 'Instagram URL', 'cim' ),
         'section'  => 'cim_social_section',
         'type'     => 'url',
     ) );
     
     // LinkedIn URL
-    $wp_customize->add_setting( 'industrial_linkedin_url', array(
+    $wp_customize->add_setting( 'cim_linkedin_url', array(
         'default'           => '#',
         'sanitize_callback' => 'esc_url_raw',
     ) );
     
-    $wp_customize->add_control( 'industrial_linkedin_url', array(
-        'label'    => __( 'LinkedIn URL', 'industrial' ),
+    $wp_customize->add_control( 'cim_linkedin_url', array(
+        'label'    => __( 'LinkedIn URL', 'cim' ),
         'section'  => 'cim_social_section',
         'type'     => 'url',
     ) );
     
     // YouTube URL
-    $wp_customize->add_setting( 'industrial_youtube_url', array(
+    $wp_customize->add_setting( 'cim_youtube_url', array(
         'default'           => '#',
         'sanitize_callback' => 'esc_url_raw',
     ) );
     
-    $wp_customize->add_control( 'industrial_youtube_url', array(
-        'label'    => __( 'YouTube URL', 'industrial' ),
+    $wp_customize->add_control( 'cim_youtube_url', array(
+        'label'    => __( 'YouTube URL', 'cim' ),
         'section'  => 'cim_social_section',
         'type'     => 'url',
     ) );
@@ -712,25 +895,25 @@ add_action( 'customize_register', 'cim_customize_register' );
  */
 function cim_register_career_application_post_type() {
     $labels = array(
-        'name'               => _x( 'Career Applications', 'post type general name', 'industrial' ),
-        'singular_name'      => _x( 'Career Application', 'post type singular name', 'industrial' ),
-        'menu_name'          => _x( 'Career Applications', 'admin menu', 'industrial' ),
-        'name_admin_bar'     => _x( 'Career Application', 'add new on admin bar', 'industrial' ),
-        'add_new'            => _x( 'Add New', 'career application', 'industrial' ),
-        'add_new_item'       => __( 'Add New Career Application', 'industrial' ),
-        'new_item'           => __( 'New Career Application', 'industrial' ),
-        'edit_item'          => __( 'Edit Career Application', 'industrial' ),
-        'view_item'          => __( 'View Career Application', 'industrial' ),
-        'all_items'          => __( 'All Career Applications', 'industrial' ),
-        'search_items'       => __( 'Search Career Applications', 'industrial' ),
-        'parent_item_colon'  => __( 'Parent Career Applications:', 'industrial' ),
-        'not_found'          => __( 'No career applications found.', 'industrial' ),
-        'not_found_in_trash' => __( 'No career applications found in Trash.', 'industrial' )
+        'name'               => _x( 'Career Applications', 'post type general name', 'cim' ),
+        'singular_name'      => _x( 'Career Application', 'post type singular name', 'cim' ),
+        'menu_name'          => _x( 'Career Applications', 'admin menu', 'cim' ),
+        'name_admin_bar'     => _x( 'Career Application', 'add new on admin bar', 'cim' ),
+        'add_new'            => _x( 'Add New', 'career application', 'cim' ),
+        'add_new_item'       => __( 'Add New Career Application', 'cim' ),
+        'new_item'           => __( 'New Career Application', 'cim' ),
+        'edit_item'          => __( 'Edit Career Application', 'cim' ),
+        'view_item'          => __( 'View Career Application', 'cim' ),
+        'all_items'          => __( 'All Career Applications', 'cim' ),
+        'search_items'       => __( 'Search Career Applications', 'cim' ),
+        'parent_item_colon'  => __( 'Parent Career Applications:', 'cim' ),
+        'not_found'          => __( 'No career applications found.', 'cim' ),
+        'not_found_in_trash' => __( 'No career applications found in Trash.', 'cim' )
     );
 
     $args = array(
         'labels'             => $labels,
-        'description'        => __( 'Career applications submitted through the website', 'industrial' ),
+        'description'        => __( 'Career applications submitted through the website', 'cim' ),
         'public'             => false,
         'publicly_queryable' => false,
         'show_ui'            => true,

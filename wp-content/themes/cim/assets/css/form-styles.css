@@ -1,0 +1,48 @@
+/**
+ * Form Styles for CIM Theme
+ */
+
+/* Form Messages */
+.form-message {
+  padding: 15px;
+  margin-bottom: 20px;
+  border-radius: 4px;
+  font-weight: 500;
+}
+
+.success-message {
+  background-color: #d4edda;
+  color: #155724;
+  border: 1px solid #c3e6cb;
+}
+
+.error-message {
+  background-color: #f8d7da;
+  color: #721c24;
+  border: 1px solid #f5c6cb;
+}
+
+/* Career Form Specific Styles */
+.career-form .form-message {
+  margin-bottom: 25px;
+}
+
+/* Contact Form Specific Styles */
+.contact-form .form-message {
+  margin-bottom: 25px;
+  text-align: center;
+}
+
+/* Form Field Validation */
+input:invalid,
+textarea:invalid {
+  border-color: #dc3545 !important;
+}
+
+/* Focus styles for form fields */
+.career-form input:focus,
+.contact-form input:focus,
+.contact-form textarea:focus {
+  outline: none;
+  box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+}

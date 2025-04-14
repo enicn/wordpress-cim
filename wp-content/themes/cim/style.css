@@ -1,6 +1,6 @@
 /*
-Theme Name: Industrial
-Theme URI: http://example.com/industrial/
+Theme Name: CIM
+Theme URI: http://example.com/cim/
 Author: Trae AI
 Author URI: http://example.com/
 Description: A modern industrial-themed WordPress theme with dark background and blue-yellow color scheme, designed for industrial businesses.
@@ -30,7 +30,9 @@ Text Domain: industrial
 # Variables
 --------------------------------------------------------------*/
 :root {
-  --industrial-dark-bg: #121212;
+  --header-height: 120px;
+  --footer-height: 100px;
+  --industrial-dark-bg: #000000;
   --industrial-dark-secondary: #1a1a1a;
   --industrial-footer-bg: #1f242d;
   --industrial-text-light: #ffffff;
@@ -45,7 +47,7 @@ Text Domain: industrial
 # Global
 --------------------------------------------------------------*/
 body {
-  font-family: 'Arial', sans-serif;
+  font-family: sans-serif;
   margin: 0;
   padding: 0;
   background-color: var(--industrial-dark-bg);
@@ -63,7 +65,12 @@ a:hover {
   color: var(--industrial-yellow);
 }
 
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   font-weight: 700;
   margin-top: 0;
   margin-bottom: 1rem;
@@ -75,7 +82,7 @@ img {
 }
 
 .container {
-  width: 100%;
+  width: calc(100% - 30px);
   max-width: 1200px;
   margin: 0 auto;
   padding: 0 15px;
@@ -94,25 +101,35 @@ img {
 }
 
 .section-title:after {
-  content: '';
+  content: "";
   display: block;
   width: 80px;
   height: 4px;
   background-color: var(--industrial-yellow);
   margin: 15px auto 0;
 }
+/*--------------------------------------------------------------
+# Main
+--------------------------------------------------------------*/
+.site-main {
+  margin: auto;
+  position: relative;
+  width: 980px;
+  margin-top: var(--header-height);
+}
 
 /*--------------------------------------------------------------
 # Header
 --------------------------------------------------------------*/
 .site-header {
-  background-color: var(--industrial-dark-secondary);
-  padding: 15px 0;
+  background-color: var(--industrial-dark-bg);
   position: fixed;
+  height: var(--header-height);
   width: 100%;
   top: 0;
   z-index: 1000;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.6);
+  display: flex;
 }
 
 .site-branding {
@@ -138,6 +155,7 @@ img {
 /*--------------------------------------------------------------
 # Navigation
 --------------------------------------------------------------*/
+
 .main-navigation {
   display: flex;
   justify-content: flex-end;
@@ -151,13 +169,55 @@ img {
 }
 
 .main-navigation ul li:hover > ul {
-    display: block;
-    animation: fadeIn 0.3s ease-in-out;
+  display: block;
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+/* Header Menu Styles */
+.main-navigation ul ul {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  z-index: 99999;
+  background-color: #1a1a1a;
+  min-width: 200px;
+  box-shadow: 0 3px 5px rgba(0, 0, 0, 0.2);
+  padding: 10px 0;
+}
+
+.main-navigation ul li:hover > ul {
+  display: block;
+}
+
+.main-navigation ul ul li {
+  margin: 0;
+  width: 100%;
+}
+
+.main-navigation ul ul a {
+  padding: 10px 20px;
+  font-size: 0.85rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.main-navigation ul ul li:last-child a {
+  border-bottom: none;
+}
+
+.main-navigation ul ul a:hover {
+  background-color: rgba(255, 255, 255, 0.1);
 }
 
 @keyframes fadeIn {
-    from { opacity: 0; transform: translateY(10px); }
-    to { opacity: 1; transform: translateY(0); }
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .main-navigation li {
@@ -201,172 +261,6 @@ img {
 }
 
 /*--------------------------------------------------------------
-# Carousel Section
---------------------------------------------------------------*/
-.cim-carousel-section {
-  margin-top: 90px; /* Adjust based on header height */
-  position: relative;
-}
-
-.cim-carousel {
-  position: relative;
-}
-
-.carousel-item {
-  position: relative;
-  height: 600px;
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-}
-
-.carousel-item:before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: rgba(0, 0, 0, 0.5);
-}
-
-.carousel-content {
-  position: absolute;
-  bottom: 100px;
-  left: 100px;
-  max-width: 600px;
-  z-index: 1;
-}
-
-.carousel-title {
-  font-size: 3.5rem;
-  margin-bottom: 1rem;
-  color: var(--industrial-yellow);
-  text-transform: uppercase;
-  letter-spacing: 2px;
-}
-
-.carousel-description {
-  font-size: 1.5rem;
-  margin-bottom: 2rem;
-  color: var(--industrial-text-light);
-}
-
-/* Slick Slider Custom Styles */
-.slick-prev, .slick-next {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  z-index: 10;
-  width: 50px;
-  height: 50px;
-  background-color: rgba(0, 0, 0, 0.5);
-  border-radius: 50%;
-  color: var(--industrial-text-light);
-  border: none;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-}
-
-.slick-prev {
-  left: 20px;
-}
-
-.slick-next {
-  right: 20px;
-}
-
-.slick-prev:hover, .slick-next:hover {
-  background-color: var(--industrial-yellow);
-  color: #000;
-}
-
-.slick-dots {
-  position: absolute;
-  bottom: 20px;
-  left: 0;
-  right: 0;
-  display: flex;
-  justify-content: center;
-  list-style: none;
-  margin: 0;
-  padding: 0;
-}
-
-.slick-dots li {
-  margin: 0 5px;
-}
-
-.slick-dots li button {
-  width: 12px;
-  height: 12px;
-  border-radius: 50%;
-  background-color: rgba(255, 255, 255, 0.5);
-  border: none;
-  font-size: 0;
-  cursor: pointer;
-  padding: 0;
-  transition: background-color 0.3s ease;
-}
-
-.slick-dots li.slick-active button {
-  background-color: var(--industrial-yellow);
-}
-
-/*--------------------------------------------------------------
-# About Section
---------------------------------------------------------------*/
-.about-section {
-  background-color: var(--industrial-dark-secondary);
-  padding: 80px 0;
-}
-
-.about-container {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-}
-
-.about-image {
-  flex: 0 0 40%;
-  padding: 0 15px;
-}
-
-.about-content {
-  flex: 0 0 60%;
-  padding: 0 15px;
-}
-
-.about-title {
-  font-size: 2.5rem;
-  margin-bottom: 1.5rem;
-  text-transform: uppercase;
-}
-
-.about-text {
-  margin-bottom: 2rem;
-  font-size: 1.1rem;
-  line-height: 1.8;
-}
-
-.read-more-button {
-  display: inline-block;
-  padding: 10px 25px;
-  background-color: var(--industrial-blue);
-  color: var(--industrial-text-light);
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-  border-radius: 4px;
-  transition: background-color 0.3s ease;
-}
-
-.read-more-button:hover {
-  background-color: var(--industrial-blue-light);
-  color: var(--industrial-text-light);
-}
-
-/*--------------------------------------------------------------
 # Products/Solutions Section
 --------------------------------------------------------------*/
 .products-section {
@@ -375,10 +269,7 @@ img {
 }
 
 .products-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-  gap: 30px;
-  margin-top: 40px;
+  display: flex;
 }
 
 .product-item {
@@ -473,58 +364,65 @@ img {
   color: var(--industrial-yellow);
 }
 
+/* Product Category Styles */
+.product-category {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.category-thumbnail {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  overflow: hidden;
+  margin: 0 auto 15px;
+  border: 3px solid #ffc107;
+}
+
+.category-thumbnail img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.category-title {
+  font-size: 1.2rem;
+  margin: 0;
+  color: #fff;
+}
 /*--------------------------------------------------------------
-# Geometric Section
+# Video Section
 --------------------------------------------------------------*/
-.geometric-section {
+.video-section {
   position: relative;
-  height: 300px;
+  padding: 0;
+  background-color: var(--industrial-dark-bg);
   overflow: hidden;
 }
 
-.geometric-bg {
-  position: absolute;
-  bottom: 0;
-  left: 0;
+.video-container {
   width: 100%;
-  height: 100%;
-  display: flex;
-  flex-wrap: wrap;
+  max-width: 100%;
+  margin: 0 auto;
+  overflow: hidden;
 }
 
-.geometric-shape {
-  flex: 1 0 33.333%;
-  height: 50%;
+.video-container video {
+  width: 100%;
+  height: auto;
+  display: block;
+  object-fit: cover;
 }
 
-.shape-1 {
-  background-color: var(--industrial-blue);
-  clip-path: polygon(0 0, 100% 0, 50% 100%);
-}
+/*--------------------------------------------------------------
+# Geometric Section
+--------------------------------------------------------------*/
 
-.shape-2 {
-  background-color: var(--industrial-blue-light);
-  clip-path: polygon(0 0, 100% 0, 100% 100%);
-}
-
-.shape-3 {
-  background-color: var(--industrial-yellow);
-  clip-path: polygon(0 0, 100% 100%, 0 100%);
-}
-
-.shape-4 {
-  background-color: #00a8e8;
-  clip-path: polygon(0 0, 100% 0, 100% 100%, 0 50%);
-}
-
-.shape-5 {
-  background-color: #0077b6;
-  clip-path: polygon(0 50%, 100% 0, 100% 100%, 0 100%);
-}
-
-.shape-6 {
-  background-color: var(--industrial-yellow-dark);
-  clip-path: polygon(0 0, 100% 50%, 100% 100%, 0 100%);
+.geometric-section {
+  background-size: cover;
+  background-position: bottom;
+  background-repeat: no-repeat;
+  height: 280px;
 }
 
 /*--------------------------------------------------------------
@@ -558,7 +456,7 @@ img {
 }
 
 .footer-title:after {
-  content: '';
+  content: "";
   position: absolute;
   bottom: 0;
   left: 0;
@@ -645,15 +543,15 @@ img {
   .about-content {
     flex: 0 0 100%;
   }
-  
+
   .about-image {
     margin-bottom: 30px;
   }
-  
+
   .hero-title {
     font-size: 2.8rem;
   }
-  
+
   .hero-subtitle {
     font-size: 1.3rem;
   }
@@ -663,31 +561,31 @@ img {
   .header-container {
     flex-direction: column;
   }
-  
+
   .site-branding {
     margin-bottom: 15px;
   }
-  
+
   .main-navigation {
     justify-content: center;
   }
-  
+
   .main-navigation li {
     margin: 0 10px;
   }
-  
+
   .hero-title {
     font-size: 2.2rem;
   }
-  
+
   .hero-subtitle {
     font-size: 1.1rem;
   }
-  
+
   .section-title {
     font-size: 2rem;
   }
-  
+
   .products-grid {
     grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
   }
@@ -698,24 +596,158 @@ img {
     flex-wrap: wrap;
     justify-content: center;
   }
-  
+
   .main-navigation li {
     margin: 5px;
   }
-  
+
   .hero-title {
     font-size: 1.8rem;
   }
-  
+
   .hero-subtitle {
     font-size: 1rem;
   }
-  
+
   .section-title {
     font-size: 1.8rem;
   }
-  
+
   .footer-column {
     flex: 0 0 100%;
+  }
+}
+
+/* --- Fixed Footer Styling --- */
+
+.footer-fixed-bottom {
+  height: var(--footer-height);
+  display: flex;
+  position: fixed; /* Makes the footer stay in place */
+  bottom: 0; /* Aligns it to the bottom */
+  left: 0; /* Aligns it to the left */
+  width: 100%; /* Makes it span the full width */
+  background-color: #1c243d; /* Dark blue background from screenshot (adjust as needed) */
+  color: #ffffff; /* White text color */
+  z-index: 1000; /* Ensures it stays on top of other content */
+  box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.6); /* Optional subtle shadow */
+}
+
+.footer-fixed-container {
+  display: flex;
+  justify-content: space-between; /* Distributes space between the three main columns */
+  align-items: center; /* Vertically aligns items in the middle */
+  max-width: 1200px; /* Or your theme's standard container width */
+  margin: 0 auto; /* Centers the container */
+  padding: 0 15px; /* Horizontal padding inside the container */
+}
+
+/* Left Section (Logo & Name) */
+.footer-fixed-left {
+  display: flex;
+  flex-direction: column; /* Stack logo and name vertically */
+  align-items: flex-start; /* Align items to the start (left) */
+}
+
+.footer-fixed-logo {
+  max-height: 72px; /* Adjust logo size as needed */
+  width: auto;
+  margin-bottom: 5px; /* Space between logo and name */
+}
+
+.footer-fixed-company-name {
+  font-size: 0.8em; /* Adjust font size */
+  color: #cccccc; /* Slightly dimmer color for name */
+}
+
+/* Middle Section (Social Icons) */
+.footer-fixed-social a {
+  color: #ffffff;
+  font-size: 1.2em; /* Adjust icon size */
+  margin: 0 8px; /* Spacing between icons */
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.footer-fixed-social a:hover {
+  color: #f0c040; /* Example hover color (match theme accent?) */
+}
+
+/* Right Section (Categories & Contact) */
+.footer-fixed-right {
+  display: flex;
+  flex-direction: column; /* Stack categories and contact vertically */
+  align-items: flex-end; /* Align items to the end (right) */
+  text-align: right;
+}
+
+.footer-fixed-categories {
+  font-size: 0.9em;
+  margin-bottom: 5px; /* Space between categories and contact */
+  font-weight: bold; /* Make categories bold */
+  color: #f0c040;
+}
+
+.footer-fixed-categories span {
+  margin: 0 3px;
+}
+
+.footer-fixed-categories .category-separator {
+  margin: 0 5px;
+}
+
+.footer-fixed-contact {
+  font-size: 0.9em;
+}
+
+.footer-fixed-contact a {
+  color: #ffffff;
+  text-decoration: none;
+  display: block; /* Makes links appear on separate lines */
+  line-height: 1.4;
+  transition: color 0.3s ease;
+}
+
+.footer-fixed-contact a:hover {
+  color: #f0c040; /* Example hover color */
+}
+
+/* --- Adjust body padding to prevent content overlap --- */
+body {
+  /* Add padding to the bottom equal to the footer's height */
+  /* Calculate or measure the final height of your .footer-fixed-bottom */
+  /* Example: If footer is 70px tall: */
+  padding-bottom: var(--footer-height);
+}
+
+/* Add responsive adjustments as needed with @media queries */
+@media (max-width: 768px) {
+  .footer-fixed-container {
+    flex-direction: column;
+    text-align: center;
+  }
+  .footer-fixed-left,
+  .footer-fixed-social,
+  .footer-fixed-right {
+    align-items: center; /* Center items in columns on mobile */
+    text-align: center;
+    margin-bottom: 10px; /* Add space between sections when stacked */
+  }
+  .footer-fixed-right {
+    align-items: center; /* Override right alignment */
+  }
+  .footer-fixed-social {
+    order: 3; /* Optional: Change order on mobile */
+  }
+  .footer-fixed-left {
+    order: 1;
+  }
+  .footer-fixed-right {
+    order: 2;
+  }
+
+  body {
+    /* Recalculate padding needed for taller stacked footer */
+    padding-bottom: 180px; /* Example: Adjust based on actual stacked height */
   }
 }

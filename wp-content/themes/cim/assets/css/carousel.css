@@ -1,0 +1,146 @@
+/**
+ * Carousel styles for CIM theme
+ */
+
+/* Carousel Section */
+.cim-carousel-section {
+  position: relative;
+  overflow: hidden;
+  background-color: var(--industrial-dark-bg);
+  height: 600px; /* 设置轮播图高度为600px */
+}
+
+.cim-carousel {
+  position: relative;
+  height: 100%;
+}
+
+/* Carousel Item */
+.carousel-item {
+  position: relative;
+  height: 600px;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  transition: all 0.3s ease;
+}
+
+/* Carousel Link */
+.carousel-link {
+  display: block;
+  text-decoration: none;
+  color: inherit;
+  cursor: pointer;
+}
+
+/* 默认状态下的遮罩 - 透明 */
+.carousel-item:before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0) !important; /* 改为完全透明 */
+  transition: background 0.5s;
+}
+
+/* 悬停状态下的遮罩 - 更深的阴影 */
+.carousel-item.hover:before {
+  background: rgba(0, 0, 0, 0.6) !important;
+}
+
+/* 轮播内容 */
+.carousel-content {
+  position: absolute;
+  bottom: 0px;
+  left: 30px;
+  max-width: 600px;
+  z-index: 1;
+  opacity: 0;
+  transition: opacity 0.5s;
+  padding: 20px;
+}
+
+.carousel-item.hover .carousel-content {
+  opacity: 1;
+}
+
+.carousel-title {
+  font-weight: 700;
+  font-size: 3rem;
+  margin-bottom: 0;
+  color: var(--industrial-yellow, #FFD700);
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+.carousel-description {
+  font-size: 1.5rem;
+  margin-bottom: 2rem;
+  color: var(--industrial-text-light, #ffffff);
+  line-height: 1.2;
+}
+
+/* 导航箭头 */
+.carousel-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 10;
+  width: 50px;
+  height: 50px;
+  /* background-color: rgba(0, 0, 0, 0.5); */
+  border-radius: 50%;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: opacity,background-color 0.3s ease;
+  font-size: 1.5rem;
+  opacity: 0.3;
+}
+
+.carousel-arrow:hover {
+  background-color: rgba(0, 0, 0, 0.8);
+  opacity: 1;
+}
+
+.carousel-prev {
+  left: 5px;
+}
+
+.carousel-next {
+  right: 5px;
+}
+
+/* 响应式调整 */
+@media (max-width: 768px) {
+  .carousel-content {
+    max-width: 80%;
+  }
+  
+  .carousel-title {
+    font-size: 2.5rem;
+  }
+  
+  .carousel-description {
+    font-size: 1.2rem;
+  }
+}
+
+@media (max-width: 576px) {
+  .carousel-title {
+    font-size: 2rem;
+  }
+  
+  .carousel-description {
+    font-size: 1rem;
+  }
+  
+  .carousel-arrow {
+    width: 40px;
+    height: 40px;
+  }
+}
