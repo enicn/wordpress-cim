@@ -281,20 +281,20 @@ get_header(); ?>
   }
 </style>
 
+<div style="position: fixed; inset: 0; z-index: -1;">
+  <video crossorigin="anonymous" playsinline="" preload="auto" muted="" loop="" autoplay="" controls="no"
+    src="https://video.wixstatic.com/video/11062b_4d1ce144268d4ffda4eb0e5d39af01d0/720p/mp4/file.mp4"
+    style="height: 100%; width: 100%; object-fit: cover; object-position: center center; opacity: 1;"></video>
+</div>
 <main id="main" class="site-main">
-
   <div class="career-content-wrapper">
-
     <h1><?php esc_html_e('Careers at Canadian Innovative Materials', 'text-domain'); ?></h1>
-
     <div class="career-columns">
-
       <div class="career-description">
         <p>
           <?php esc_html_e('Canadian Innovative Materials is expanding! We are seeking self-motivated team players who thrive in a dynamic startup environment and are eager to help build and sell innovative products. If you\'re looking to be part of a growing opportunity from the ground up, we\'d love to hear from you -- send us your email to connect!', 'text-domain'); ?>
         </p>
       </div>
-
       <div class="career-form">
         <?php 
           // Display form messages
@@ -340,39 +340,37 @@ get_header(); ?>
       <!-- Modal for Step 2 Form -->
       <div id="career-modal" class="modal-overlay">
         <div class="modal-container">
-          <h2 class="modal-title"><?php esc_html_e('What would you like to hear more about?', 'text-domain'); ?></h2>
+          <h2 class="modal-title"><?php esc_html_e('Additional Information', 'text-domain'); ?></h2>
           
           <form id="career-step2-form" action="" method="post">
-            <div class="modal-subtitle"><?php esc_html_e('What services are you interested in?', 'text-domain'); ?></div>
-            <div class="checkbox-group">
-              <div class="checkbox-container">
-                <input type="checkbox" id="service-website" name="services[]" value="Website Design">
-                <label for="service-website"><?php esc_html_e('Website Design', 'text-domain'); ?></label>
-              </div>
-              <div class="checkbox-container">
-                <input type="checkbox" id="service-logo" name="services[]" value="Logo Design">
-                <label for="service-logo"><?php esc_html_e('Logo Design', 'text-domain'); ?></label>
-              </div>
-              <div class="checkbox-container">
-                <input type="checkbox" id="service-marketing" name="services[]" value="Marketing Services">
-                <label for="service-marketing"><?php esc_html_e('Marketing Services', 'text-domain'); ?></label>
-              </div>
-            </div>
-
-            <div class="modal-subtitle"><?php esc_html_e('What is your budget?', 'text-domain'); ?></div>
+            <div class="modal-subtitle"><?php esc_html_e('Education', 'text-domain'); ?></div>
             <div class="select-container">
-              <select id="budget" name="budget">
-                <option value="" selected disabled><?php esc_html_e('Select Budget', 'text-domain'); ?></option>
-                <option value="$100 - $200"><?php esc_html_e('$100 - $200', 'text-domain'); ?></option>
-                <option value="$200 - $400"><?php esc_html_e('$200 - $400', 'text-domain'); ?></option>
-                <option value="$400 - $600"><?php esc_html_e('$400 - $600', 'text-domain'); ?></option>
+              <select id="education" name="education">
+                <option value="" selected disabled><?php esc_html_e('Highest Education Level', 'text-domain'); ?></option>
+                <option value="High School"><?php esc_html_e('High School', 'text-domain'); ?></option>
+                <option value="College Diploma"><?php esc_html_e('College Diploma', 'text-domain'); ?></option>
+                <option value="Bachelor's Degree"><?php esc_html_e('Bachelor\'s Degree', 'text-domain'); ?></option>
+                <option value="Master's Degree"><?php esc_html_e('Master\'s Degree', 'text-domain'); ?></option>
+                <option value="PhD"><?php esc_html_e('PhD', 'text-domain'); ?></option>
                 <option value="Other"><?php esc_html_e('Other', 'text-domain'); ?></option>
               </select>
             </div>
 
-            <div class="modal-subtitle"><?php esc_html_e('Anything else you\'d like to hear about?', 'text-domain'); ?></div>
+            <div class="modal-subtitle"><?php esc_html_e('Work Experience', 'text-domain'); ?></div>
+            <div class="select-container">
+              <select id="experience" name="experience">
+                <option value="" selected disabled><?php esc_html_e('Years of Experience', 'text-domain'); ?></option>
+                <option value="0-1 year"><?php esc_html_e('0-1 year', 'text-domain'); ?></option>
+                <option value="1-3 years"><?php esc_html_e('1-3 years', 'text-domain'); ?></option>
+                <option value="3-5 years"><?php esc_html_e('3-5 years', 'text-domain'); ?></option>
+                <option value="5-10 years"><?php esc_html_e('5-10 years', 'text-domain'); ?></option>
+                <option value="10+ years"><?php esc_html_e('10+ years', 'text-domain'); ?></option>
+              </select>
+            </div>
+
+            <div class="modal-subtitle"><?php esc_html_e('Tell us about yourself and why you want to join our team', 'text-domain'); ?></div>
             <div class="textarea-container">
-              <textarea id="additional-info" name="additional_info" placeholder="<?php esc_attr_e('Ask us anything', 'text-domain'); ?>"></textarea>
+              <textarea id="additional-info" name="additional_info" placeholder="<?php esc_attr_e('Include relevant skills and experience', 'text-domain'); ?>"></textarea>
             </div>
 
             <div class="modal-buttons">
@@ -382,11 +380,8 @@ get_header(); ?>
           </form>
         </div>
       </div>
-
     </div> <!-- .career-columns -->
-
   </div> <!-- .career-content-wrapper -->
-
 </main><!-- #main -->
 
 <?php

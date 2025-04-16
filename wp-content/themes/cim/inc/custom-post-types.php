@@ -26,7 +26,7 @@ function cim_register_form_submission_post_types() {
         ),
         'public'              => true,
         'show_ui'             => true,
-        'show_in_menu'        => true,
+        'show_in_menu'        => false, // Hide from main menu, shown in CIM Theme Settings
         'menu_icon'           => 'dashicons-format-aside',
         'capability_type'     => 'post',
         'hierarchical'        => false,
@@ -53,7 +53,7 @@ function cim_register_form_submission_post_types() {
         ),
         'public'              => false,
         'show_ui'             => true,
-        'show_in_menu'        => true,
+        'show_in_menu'        => false, // Hide from main menu, shown in CIM Theme Settings
         'menu_icon'           => 'dashicons-id',
         'capability_type'     => 'post',
         'hierarchical'        => false,
@@ -80,7 +80,7 @@ function cim_register_form_submission_post_types() {
         ),
         'public'              => false,
         'show_ui'             => true,
-        'show_in_menu'        => true,
+        'show_in_menu'        => false, // Hide from main menu, shown in CIM Theme Settings
         'menu_icon'           => 'dashicons-email',
         'capability_type'     => 'post',
         'hierarchical'        => false,
@@ -182,6 +182,9 @@ function cim_career_submission_meta_box_callback($post) {
     $position = get_post_meta($post->ID, '_position', true);
     $email = get_post_meta($post->ID, '_email', true);
     $phone = get_post_meta($post->ID, '_phone', true);
+    $education = get_post_meta($post->ID, '_education', true);
+    $experience = get_post_meta($post->ID, '_experience', true);
+    $additional_info = get_post_meta($post->ID, '_additional_info', true);
     $submission_date = get_post_meta($post->ID, '_submission_date', true);
     
     // Output fields
@@ -189,6 +192,10 @@ function cim_career_submission_meta_box_callback($post) {
     echo '<p><strong>' . __('Position Applied For:', 'cim') . '</strong> ' . esc_html($position) . '</p>';
     echo '<p><strong>' . __('Email:', 'cim') . '</strong> ' . esc_html($email) . '</p>';
     echo '<p><strong>' . __('Phone:', 'cim') . '</strong> ' . esc_html($phone) . '</p>';
+    echo '<p><strong>' . __('Education:', 'cim') . '</strong> ' . esc_html($education) . '</p>';
+    echo '<p><strong>' . __('Experience:', 'cim') . '</strong> ' . esc_html($experience) . '</p>';
+    echo '<p><strong>' . __('Additional Information:', 'cim') . '</strong></p>';
+    echo '<div style="padding: 10px; background: #f8f8f8; border: 1px solid #ddd;">' . wpautop(esc_html($additional_info)) . '</div>';
     echo '<p><strong>' . __('Submission Date:', 'cim') . '</strong> ' . esc_html($submission_date) . '</p>';
 }
 

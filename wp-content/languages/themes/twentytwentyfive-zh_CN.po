@@ -62,11 +62,6 @@ msgstr "大标题页眉"
 
 #: theme.json
 msgctxt "Template part name"
-msgid "Vertical Header"
-msgstr "垂直页眉"
-
-#: theme.json
-msgctxt "Template part name"
 msgid "Header"
 msgstr "页眉"
 
@@ -427,16 +422,6 @@ msgctxt "Style variation name"
 msgid "Evening"
 msgstr "晚间"
 
-#: patterns/vertical-header.php
-msgctxt "Pattern description"
-msgid "Vertical Header with site title and navigation"
-msgstr "带网站标题和导航的垂直页眉"
-
-#: patterns/vertical-header.php
-msgctxt "Pattern title"
-msgid "Vertical header"
-msgstr "垂直标题"
-
 #: patterns/text-faqs.php:83
 msgctxt "Question in the FAQs pattern."
 msgid "Are signed copies available?"
@@ -553,11 +538,6 @@ msgctxt "Pattern title"
 msgid "Right-aligned single post"
 msgstr "右对齐的单篇文章"
 
-#: patterns/template-single-text-blog.php
-msgctxt "Pattern title"
-msgid "Text-only blog, single post"
-msgstr "纯文字博客，单篇文章"
-
 #: patterns/template-single-photo-blog.php:79
 msgid "Next Photo"
 msgstr "下一张照片"
@@ -624,11 +604,6 @@ msgctxt "Pattern title"
 msgid "Right-aligned blog, search"
 msgstr "右对齐博客，搜索"
 
-#: patterns/template-search-text-blog.php
-msgctxt "Pattern title"
-msgid "Text-only blog, search"
-msgstr "纯文字博客，搜索"
-
 #: patterns/template-search-photo-blog.php
 msgctxt "Pattern title"
 msgid "Photo blog search results"
@@ -648,16 +623,6 @@ msgstr "一个列表文章，1 栏，有特色图片和文章日期。"
 msgctxt "Pattern title"
 msgid "List of posts, 1 column"
 msgstr "职位列表，1 栏"
-
-#: patterns/template-query-loop-vertical-header-blog.php
-msgctxt "Pattern title"
-msgid "Right-aligned posts"
-msgstr "右对齐文章"
-
-#: patterns/template-query-loop-text-blog.php
-msgctxt "Pattern title"
-msgid "Text-only blog, posts"
-msgstr "纯文字博客，文章"
 
 #: patterns/template-query-loop-photo-blog.php
 msgctxt "Pattern description"
@@ -687,11 +652,6 @@ msgctxt "Pattern title"
 msgid "News blog query loop"
 msgstr "新闻博客查询循环"
 
-#: patterns/template-page-vertical-header-blog.php
-msgctxt "Pattern title"
-msgid "Page template for the right-aligned blog"
-msgstr "右对齐博客的页面模板"
-
 #: patterns/template-page-photo-blog.php
 msgctxt "Pattern title"
 msgid "Photo blog page"
@@ -705,16 +665,6 @@ msgstr "最新"
 msgctxt "Pattern title"
 msgid "News blog with sidebar"
 msgstr "新闻博客侧边栏"
-
-#: patterns/template-home-vertical-header-blog.php
-msgctxt "Pattern title"
-msgid "Homepage for right-aligned blog"
-msgstr "右对齐博客首页"
-
-#: patterns/template-home-text-blog.php
-msgctxt "Pattern title"
-msgid "Text-only blog, home"
-msgstr "纯文字博客首页"
 
 #: patterns/template-home-posts-grid-news-blog.php:114
 msgid "Architecture"
@@ -735,16 +685,6 @@ msgctxt "Pattern title"
 msgid "News blog home"
 msgstr "新闻博客首页"
 
-#: patterns/template-archive-vertical-header-blog.php
-msgctxt "Pattern title"
-msgid "Archive for the right-aligned blog"
-msgstr "右对齐博客存档"
-
-#: patterns/template-archive-text-blog.php
-msgctxt "Pattern title"
-msgid "Text-only blog, archive"
-msgstr "纯文字博客归档"
-
 #: patterns/template-archive-photo-blog.php
 msgctxt "Pattern title"
 msgid "Photo blog archive"
@@ -754,11 +694,6 @@ msgstr "图片博客归档"
 msgctxt "Pattern title"
 msgid "News blog archive"
 msgstr "新闻博客归档"
-
-#: patterns/template-404-vertical-header-blog.php
-msgctxt "Pattern title"
-msgid "Right-aligned blog, 404"
-msgstr "右对齐博客，404"
 
 #: patterns/services-team-photos.php:50
 msgid "Man in hat, standing in front of a building."
@@ -1393,11 +1328,6 @@ msgctxt "Pattern title"
 msgid "Hero, overlapped book cover with links"
 msgstr "主人公，带链接的重叠书皮"
 
-#: patterns/hero-full-width-image.php:33
-msgctxt "Sample hero button"
-msgid "Learn More"
-msgstr "了解更多"
-
 #: patterns/hero-full-width-image.php:27
 msgctxt "Sample hero paragraph"
 msgid "Like flowers that bloom in unexpected places, every story unfolds with beauty and resilience, revealing hidden wonders."
@@ -1477,19 +1407,9 @@ msgid "Heading and paragraph with image on the right"
 msgstr "标题和段落右侧有图片"
 
 #: patterns/header.php
-msgctxt "Pattern description"
-msgid "Header with site title and navigation."
-msgstr "标题带网站标题和导航。"
-
-#: patterns/header.php
 msgctxt "Pattern title"
 msgid "Header"
 msgstr "标题"
-
-#: patterns/header-large-title.php
-msgctxt "Pattern description"
-msgid "Header with large site title and right-aligned navigation."
-msgstr "带有大标题的标题和右对齐导航。"
 
 #: patterns/header-large-title.php
 msgctxt "Pattern title"
@@ -1497,24 +1417,9 @@ msgid "Header with large title"
 msgstr "带大标题的页眉"
 
 #: patterns/header-columns.php
-msgctxt "Pattern description"
-msgid "Header with site title and navigation in columns."
-msgstr "带网站标题和分栏导航的页眉。"
-
-#: patterns/header-columns.php
 msgctxt "Pattern title"
 msgid "Header with columns"
 msgstr "带列的页眉"
-
-#: patterns/header-centered.php
-msgctxt "Pattern description"
-msgid "Header with centered site title and navigation."
-msgstr "标题居中的标题和导航。"
-
-#: patterns/header-centered.php
-msgctxt "Pattern title"
-msgid "Centered header"
-msgstr "居中标题"
 
 #: patterns/grid-with-categories.php:64
 msgid "Sunflowers"
@@ -1956,7 +1861,8 @@ msgctxt "Pattern title"
 msgid "Events list"
 msgstr "活动列表"
 
-#: patterns/cta-centered-heading.php:28
+#: patterns/banner-intro-image.php:42 patterns/cta-centered-heading.php:28
+#: patterns/hero-full-width-image.php:33
 msgid "Learn more"
 msgstr "了解更多"
 
@@ -2329,11 +2235,6 @@ msgstr "左对齐的大标题，用粗体字强调品牌名称。"
 msgctxt "Pattern title"
 msgid "Intro with left-aligned description"
 msgstr "左对齐的介绍说明"
-
-#: patterns/banner-intro-image.php:42
-msgctxt "Button text of intro section."
-msgid "Learn More"
-msgstr "了解更多"
 
 #: patterns/banner-intro-image.php:35
 msgctxt "Sample description for banner with flower."

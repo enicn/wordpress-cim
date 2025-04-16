@@ -239,6 +239,16 @@ img {
   color: var(--industrial-yellow);
 }
 
+.main-navigation .current-menu-item > a,
+.main-navigation .current-page-ancestor > a,
+.main-navigation .current_page_item > a,
+.main-navigation .current_page_parent > a,
+.main-navigation .current-menu-ancestor > a,
+.main-navigation .current-menu-parent > a {
+  color: var(--industrial-yellow-dark);
+  font-weight: 600;
+}
+
 .header-container {
   display: flex;
   justify-content: space-between;

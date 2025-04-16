@@ -17,7 +17,7 @@ $video_url = get_post_meta(get_the_ID(), '_product_video', true);
 
 <style>
     .product-single-main {
-        background-color: var(--industrial-dark-bg);
+        background-color: rgba(0, 0, 0, 0.7);
         padding: 40px 20px;
         min-height: 60vh;
     }
@@ -165,6 +165,11 @@ $video_url = get_post_meta(get_the_ID(), '_product_video', true);
     }
 </style>
 
+<div style="position: fixed; inset: 0; z-index: -1;">
+  <video crossorigin="anonymous" playsinline="" preload="auto" muted="" loop="" autoplay="" controls="no"
+    src="https://video.wixstatic.com/video/11062b_2ccb88c1c6de4151b51879d6c90fca9d/720p/mp4/file.mp4"
+    style="height: 100%; width: 100%; object-fit: cover; object-position: center center; opacity: 1;"></video>
+</div>
 <!-- Modal for gallery images -->
 <div id="gallery-modal" style="display: none; position: fixed; z-index: 1000; left: 0; top: 0; width: 100%; height: 100%; overflow: auto; background-color: rgba(0,0,0,0.9);">
     <span id="close-modal" style="position: absolute; top: 15px; right: 35px; color: #f1f1f1; font-size: 40px; font-weight: bold; cursor: pointer;">&times;</span>

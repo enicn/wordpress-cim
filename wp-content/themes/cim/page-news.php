@@ -3,72 +3,23 @@
  * Template Name: News Page
  * 
  * Displays posts from the 'news' and 'blog' categories in a custom layout
- * with configurable featured posts and video section
+ * with the first post featured and remaining 5 posts in sidebar
  */
 get_header();
 
-// Get featured post IDs from theme options
-$featured_main_post_id = get_option('cim_featured_main_post');
-$featured_sidebar_posts = get_option('cim_featured_sidebar_posts', array());
+// Get video settings from theme options (keeping these options)
 $video_url = get_option('cim_news_video_url', '');
-$video_title = get_option('cim_news_video_title', 'CIM Products');
+$video_title = get_option('cim_news_video_title', 'AIM Products');
 $video_subtitle = get_option('cim_news_video_subtitle', 'Silicon Carbide Ceramic');
 
-// If no featured posts are set, query posts from the 'news' category
-if (empty($featured_main_post_id) && empty($featured_sidebar_posts)) {
-  $args = array(
-    'post_type' => 'post',
-    'posts_per_page' => 6,
-    'category_name' => 'news',
-  );
+// Query the latest 6 posts
+$args = array(
+  'post_type' => 'post',
+  'posts_per_page' => 6,
+  'paged' => 1,
+);
 
-  $news_query = new WP_Query($args);
-} else {
-  // Initialize empty query for manual population
-  $news_query = new WP_Query();
-  $news_query->posts = array();
-  $news_query->post_count = 0;
-
-  // Add featured main post if set
-  if (!empty($featured_main_post_id)) {
-    $main_post = get_post($featured_main_post_id);
-    if ($main_post) {
-      $news_query->posts[] = $main_post;
-      $news_query->post_count++;
-    }
-  }
-
-  // Add featured sidebar posts if set
-  if (!empty($featured_sidebar_posts) && is_array($featured_sidebar_posts)) {
-    foreach ($featured_sidebar_posts as $post_id) {
-      $sidebar_post = get_post($post_id);
-      if ($sidebar_post) {
-        $news_query->posts[] = $sidebar_post;
-        $news_query->post_count++;
-      }
-    }
-  }
-
-  // If we still don't have enough posts, get some from the news category
-  if ($news_query->post_count < 6) {
-    $additional_args = array(
-      'post_type' => 'post',
-      'posts_per_page' => 6 - $news_query->post_count,
-      'category_name' => 'news',
-      'post__not_in' => array_merge(
-        !empty($featured_main_post_id) ? array($featured_main_post_id) : array(),
-        !empty($featured_sidebar_posts) ? $featured_sidebar_posts : array()
-      ),
-    );
-
-    $additional_query = new WP_Query($additional_args);
-
-    if ($additional_query->have_posts()) {
-      $news_query->posts = array_merge($news_query->posts, $additional_query->posts);
-      $news_query->post_count += $additional_query->post_count;
-    }
-  }
-}
+$news_query = new WP_Query($args);
 ?>
 <style>
   /* Basic Variables (optional, adjust as needed) */
@@ -259,7 +210,7 @@ if (empty($featured_main_post_id) && empty($featured_sidebar_posts)) {
   }
 
 
-  /* CIM Products Section */
+  /* AIM Products Section */
   .cim-products-section {
     margin-top: 30px;
     /* Space above this section */
@@ -495,7 +446,7 @@ background-image: url(<?php echo get_template_directory_uri() . '/assets/images/
 </div>
 <main id="main-content" class="site-main cim-news-page">
   <div class="cim-news-section" style="background-color: rgba(255, 255, 255, 0.7)">
-    <h2 class="cim-section-title">News: <span class="cim-section-subtitle">Check out the latest news from CIM</span>
+    <h2 class="cim-section-title">News: <span class="cim-section-subtitle">Check out the latest news from AIM</span>
     </h2>
 
     <?php if ($news_query->have_posts()): ?>
@@ -524,7 +475,7 @@ background-image: url(<?php echo get_template_directory_uri() . '/assets/images/
               </div>
               <div class="cim-post-content">
                 <div class="cim-post-meta">
-                  <span class="cim-logo-icon">CIM</span>
+                  <span class="cim-logo-icon">AIM</span>
                   <span class="cim-post-author"><?php the_author(); ?></span> ·
                   <span class="cim-post-date"><?php echo get_the_date(); ?></span> ·
                   <span class="cim-post-readtime"><?php echo esc_html(ceil(str_word_count(get_the_content()) / 200)); ?> min
@@ -538,7 +489,7 @@ background-image: url(<?php echo get_template_directory_uri() . '/assets/images/
             </article>
           <?php endif; ?>
 
-          <!-- CIM Products Section -->
+          <!-- AIM Products Section -->
           <div class="cim-products-section">
             <div class="cim-products-media">
               <div class="cim-products-overlay">
@@ -569,7 +520,7 @@ background-image: url(<?php echo get_template_directory_uri() . '/assets/images/
               <div class="cim-post-small-content">
                 <h4 class="cim-post-title"><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h4>
                 <div class="cim-post-meta">
-                  <span class="cim-logo-icon">CIM</span>
+                  <span class="cim-logo-icon">AIM</span>
                   <span class="cim-post-author"><?php the_author(); ?></span><br>
                   <span class="cim-post-date"><?php echo get_the_date(); ?></span>
                 </div>
@@ -592,7 +543,7 @@ background-image: url(<?php echo get_template_directory_uri() . '/assets/images/
       </div> <!-- End News Container -->
 
       <div class="cim-all-posts-link">
-        <a href="<?php echo esc_url(get_category_link(get_cat_ID('post'))); ?>">Click for all posts from CIM</a>
+        <a href="/news-list.html">Click for all posts from AIM</a>
       </div>
 
     <?php else: ?>
@@ -601,7 +552,7 @@ background-image: url(<?php echo get_template_directory_uri() . '/assets/images/
 
     <?php wp_reset_postdata(); // Reset the query ?>
 
-  </div> <!-- End CIM News Section -->
+  </div> <!-- End AIM News Section -->
 
 </main><!-- #main-content -->
 

@@ -2,7 +2,7 @@
 /**
  * Template Name: CIM Corporate Page Example
  *
- * @package YourThemeName
+ * @package Industrial
  */
 
 get_header(); ?>
@@ -291,18 +291,18 @@ get_header(); ?>
     <div class="container">
       <div class="hero-content">
         <div class="hero-text">
-          <h1><?php _e('CIM Corporation', 'yourthemename'); ?></h1>
+          <h1><?php echo esc_html(cim_get_about_page_option('hero_title', __('CIM Corporation', 'cim'))); ?></h1>
           <p>
-            <?php _e('Canadian Innovative Materials (CIM) is a global leader in wear solutions, specializing in advanced materials engineered to withstand extreme abrasion in the mining, energy, and construction industries. Our proprietary technologies - including Tungsten Carbide Overlay (WCO), High Chrome White Iron (HCWI), Silicon Carbide Ceramic (SiC), and Chrome Carbide Overlay (CCO) - provide exceptional wear resistance, significantly enhancing equipment performance and longevity.', 'yourthemename'); ?>
+            <?php echo wp_kses_post(cim_get_about_page_option('hero_description', __('Canadian Innovative Materials (CIM) is a global leader in wear solutions, specializing in advanced materials engineered to withstand extreme abrasion in the mining, energy, and construction industries. Our proprietary technologies - including Tungsten Carbide Overlay (WCO), High Chrome White Iron (HCWI), Silicon Carbide Ceramic (SiC), and Chrome Carbide Overlay (CCO) - provide exceptional wear resistance, significantly enhancing equipment performance and longevity.', 'cim'))); ?>
           </p>
-          <a href="https://drive.google.com/file/d/1tKpVcyX2ZXmbXX2xVfOI7AZpGLQM1292/view?pli=1">
-            <div class="btn cim-brochure-btn"><?php _e('CIM Brochure', 'yourthemename'); ?></div>
+          <a href="<?php echo esc_url(cim_get_about_page_option('brochure_button_url', 'https://drive.google.com/file/d/1tKpVcyX2ZXmbXX2xVfOI7AZpGLQM1292/view?pli=1')); ?>">
+            <div class="btn cim-brochure-btn"><?php echo esc_html(cim_get_about_page_option('brochure_button_text', __('CIM Brochure', 'cim'))); ?></div>
           </a>
         </div>
         <div class="hero-image">
           <!-- Image Placeholder: Replace with WordPress dynamic image or static URL -->
-          <img src="<?php echo get_template_directory_uri(); ?>/assets/images/CIM-Brochure-2022-Latest-Cover.webp"
-            alt="<?php esc_attr_e('CIM Wear Products Brochure Cover', 'yourthemename'); ?>">
+          <img src="<?php echo esc_url(cim_get_about_page_option('hero_image', get_template_directory_uri() . '/assets/images/CIM-Brochure-2022-Latest-Cover.webp')); ?>"
+            alt="<?php esc_attr_e('CIM Wear Products Brochure Cover', 'cim'); ?>">
           <!-- Example using a placeholder image path -->
         </div>
       </div>
@@ -311,47 +311,47 @@ get_header(); ?>
 
   <!-- Values Section -->
   <section class="cim-values-section"
-    style="background-size: cover; background-position: center; background-image: url(<?php echo get_template_directory_uri() . '/assets/images/DARK-BG-NEW.jpg' ?>">
+    style="background-size: cover; background-position: center; background-image: url(<?php echo esc_url(cim_get_about_page_option('values_background_image', get_template_directory_uri() . '/assets/images/DARK-BG-NEW.jpg')); ?>">
     <div class="container">
       <div class="values-grid">
         <div class="value-item">
           <div class="value-icon integrity-icon">
             <!-- Icon Placeholder: Use SVG, FontAwesome, or Image -->
-            <img src="<?php echo get_template_directory_uri(); ?>/assets/images/icon-1.webp" alt="integrity">
+            <img src="<?php echo esc_url(cim_get_about_page_option('integrity_icon', get_template_directory_uri() . '/assets/images/icon-1.webp')); ?>" alt="integrity">
           </div>
-          <h3><?php _e('Integrity', 'yourthemename'); ?></h3>
+          <h3><?php echo esc_html(cim_get_about_page_option('integrity_title', __('Integrity', 'cim'))); ?></h3>
           <p>
-            <?php _e('We uphold the highest standards of integrity in all of our activities, prioritizing honest, transparency and a commitment to excellence.', 'yourthemename'); ?>
+            <?php echo wp_kses_post(cim_get_about_page_option('integrity_description', __('We uphold the highest standards of integrity in all of our activities, prioritizing honest, transparency and a commitment to excellence.', 'cim'))); ?>
           </p>
         </div>
         <div class="value-item">
           <div class="value-icon innovation-icon">
             <!-- Icon Placeholder: Use SVG, FontAwesome, or Image -->
-            <img src="<?php echo get_template_directory_uri(); ?>/assets/images/icon-2.webp" alt="integrity">
+            <img src="<?php echo esc_url(cim_get_about_page_option('innovation_icon', get_template_directory_uri() . '/assets/images/icon-2.webp')); ?>" alt="innovation">
           </div>
-          <h3><?php _e('Innovation', 'yourthemename'); ?></h3>
+          <h3><?php echo esc_html(cim_get_about_page_option('innovation_title', __('Innovation', 'cim'))); ?></h3>
           <p>
-            <?php _e('We foster creativity, delivering globally recognized solutions that surpass the expectations of our clients and the market.', 'yourthemename'); ?>
+            <?php echo wp_kses_post(cim_get_about_page_option('innovation_description', __('We foster creativity, delivering globally recognized solutions that surpass the expectations of our clients and the market.', 'cim'))); ?>
           </p>
         </div>
         <div class="value-item">
           <div class="value-icon improvement-icon">
             <!-- Icon Placeholder: Use SVG, FontAwesome, or Image -->
-            <img src="<?php echo get_template_directory_uri(); ?>/assets/images/icon-3.webp" alt="integrity">
+            <img src="<?php echo esc_url(cim_get_about_page_option('improvement_icon', get_template_directory_uri() . '/assets/images/icon-3.webp')); ?>" alt="improvement">
           </div>
-          <h3><?php _e('Improvement', 'yourthemename'); ?></h3>
+          <h3><?php echo esc_html(cim_get_about_page_option('improvement_title', __('Improvement', 'cim'))); ?></h3>
           <p>
-            <?php _e('We are lifelong learners, constantly seeking professional growth. Our culture thrives on innovation and continuous improvement.', 'yourthemename'); ?>
+            <?php echo wp_kses_post(cim_get_about_page_option('improvement_description', __('We are lifelong learners, constantly seeking professional growth. Our culture thrives on innovation and continuous improvement.', 'cim'))); ?>
           </p>
         </div>
         <div class="value-item">
           <div class="value-icon teamwork-icon">
             <!-- Icon Placeholder: Use SVG, FontAwesome, or Image -->
-            <img src="<?php echo get_template_directory_uri(); ?>/assets/images/icon-4.webp" alt="integrity">
+            <img src="<?php echo esc_url(cim_get_about_page_option('teamwork_icon', get_template_directory_uri() . '/assets/images/icon-4.webp')); ?>" alt="teamwork">
           </div>
-          <h3><?php _e('Teamwork', 'yourthemename'); ?></h3>
+          <h3><?php echo esc_html(cim_get_about_page_option('teamwork_title', __('Teamwork', 'cim'))); ?></h3>
           <p>
-            <?php _e('We collaborate as a team to foster member growth and uphold excellence, ensuring the success of our partners.', 'yourthemename'); ?>
+            <?php echo wp_kses_post(cim_get_about_page_option('teamwork_description', __('We collaborate as a team to foster member growth and uphold excellence, ensuring the success of our partners.', 'cim'))); ?>
           </p>
         </div>
       </div>
@@ -360,15 +360,15 @@ get_header(); ?>
       style="height: 750px; display: flex; align-items: flex-end;">
       <div class="vision-mission-content">
         <div class="vision-column">
-          <h2><?php _e('VISION', 'yourthemename'); ?></h2>
+          <h2><?php echo esc_html(cim_get_about_page_option('vision_title', __('VISION', 'cim'))); ?></h2>
           <p>
-            <?php _e('To deliver innovative wear solutions and reliable products that enhance efficiency and promote sustainability for our customers.', 'yourthemename'); ?>
+            <?php echo wp_kses_post(cim_get_about_page_option('vision_description', __('To deliver innovative wear solutions and reliable products that enhance efficiency and promote sustainability for our customers.', 'cim'))); ?>
           </p>
         </div>
         <div class="mission-column">
-          <h2><?php _e('MISSION', 'yourthemename'); ?></h2>
+          <h2><?php echo esc_html(cim_get_about_page_option('mission_title', __('MISSION', 'cim'))); ?></h2>
           <p>
-            <?php _e('We develop advanced coating, wear-resistant materials and disruptive technologies for mining, energy and construction applications to enhance performance and improve performance.', 'yourthemename'); ?>
+            <?php echo wp_kses_post(cim_get_about_page_option('mission_description', __('We develop advanced coating, wear-resistant materials and disruptive technologies for mining, energy and construction applications to enhance performance and improve performance.', 'cim'))); ?>
           </p>
         </div>
       </div>

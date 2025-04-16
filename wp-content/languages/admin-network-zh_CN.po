@@ -1,15 +1,15 @@
-# Translation of WordPress - 6.7.x - Development - Administration - Network Admin in Chinese (China)
-# This file is distributed under the same license as the WordPress - 6.7.x - Development - Administration - Network Admin package.
+# Translation of WordPress - 6.8.x - Development - Administration - Network Admin in Chinese (China)
+# This file is distributed under the same license as the WordPress - 6.8.x - Development - Administration - Network Admin package.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2024-06-28 13:58:58+0000\n"
+"PO-Revision-Date: 2025-03-29 10:30:58+0000\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: GlotPress/4.0.1\n"
 "Language: zh_CN\n"
-"Project-Id-Version: WordPress - 6.7.x - Development - Administration - Network Admin\n"
+"Project-Id-Version: WordPress - 6.8.x - Development - Administration - Network Admin\n"
 
 #: wp-admin/network/upgrade.php:32
 msgid "<a href=\"https://developer.wordpress.org/advanced-administration/multisite/admin/#network-admin-updates-screen\">Documentation on Upgrade Network</a>"
@@ -106,12 +106,12 @@ msgid "You should back up your existing %1$s and %2$s files."
 msgstr "您应备份现有的 %1$s 和 %2$s 文件。"
 
 #. translators: %s: Theme name.
-#: wp-admin/includes/class-wp-ms-themes-list-table.php:738
+#: wp-admin/includes/class-wp-ms-themes-list-table.php:744
 msgid "Visit theme site for %s"
 msgstr "访问 %s 的主题站点"
 
 #. translators: %s: Theme name.
-#: wp-admin/includes/class-wp-ms-themes-list-table.php:751
+#: wp-admin/includes/class-wp-ms-themes-list-table.php:757
 msgid "Child theme of %s"
 msgstr "%s 的子主题"
 
@@ -239,7 +239,7 @@ msgstr "子域名安装"
 msgid "Sub-directory Installation"
 msgstr "子目录安装"
 
-#: wp-admin/includes/class-wp-ms-themes-list-table.php:944
+#: wp-admin/includes/class-wp-ms-themes-list-table.php:950
 msgid "Active Child Theme"
 msgstr "当前子主题"
 
@@ -381,7 +381,7 @@ msgctxt "user"
 msgid "Mark as spam"
 msgstr "标记为垃圾用户"
 
-#: wp-admin/includes/class-wp-ms-themes-list-table.php:744
+#: wp-admin/includes/class-wp-ms-themes-list-table.php:750
 msgid "Visit Theme Site"
 msgstr "访问主题站点"
 
@@ -513,7 +513,7 @@ msgstr "垃圾站点"
 msgid "Archived"
 msgstr "已归档"
 
-#: wp-admin/network/site-users.php:373 wp-admin/network/user-new.php:149
+#: wp-admin/network/site-users.php:376 wp-admin/network/user-new.php:149
 msgid "A password reset link will be sent to the user via email."
 msgstr "密码重设链接将通过邮件发给用户。"
 
@@ -769,7 +769,7 @@ msgstr "欢迎来到网络管理。这个管理页面可用来管理您的多站
 msgid "Only use this screen once you have updated to a new version of WordPress through Updates/Available Updates (via the Network Administration navigation menu or the Toolbar). Clicking the Upgrade Network button will step through each site in the network, five at a time, and make sure any database updates are applied."
 msgstr "请在「更新」或「可用更新」页面（通过「管理网络」区域的导航菜单或「工具栏」来进入）升级到最新 WordPress 版本之后再使用本页面。点击「升级网络」按钮，WordPress 将自动依次升级站点网络中的所有站点（5 个一次），并确保所有站点的数据库处于最新结构。"
 
-#: wp-admin/network/menu.php:46 wp-admin/network/upgrade.php:16
+#: wp-admin/network/menu.php:51 wp-admin/network/upgrade.php:16
 #: wp-admin/network/upgrade.php:43 wp-admin/network/upgrade.php:145
 msgid "Upgrade Network"
 msgstr "升级站点网络"
@@ -788,8 +788,8 @@ msgid "Language Settings"
 msgstr "语言设置"
 
 #: wp-admin/network/settings.php:253
-msgid "Allow site administrators to add new users to their site via the \"Users &rarr; Add New\" page"
-msgstr "允许站点管理员通过「用户 &rarr; 添加」页面添加新用户"
+msgid "Allow site administrators to add new users to their site via the \"Users &rarr; Add User\" page"
+msgstr "允许站点管理员通过「用户 &rarr; 添加用户」页面添加新用户"
 
 #: wp-admin/network/settings.php:58
 msgid "Super admins can no longer be added on the Options screen. You must now go to the list of existing users on Network Admin > Users and click on Username or the Edit action link below that name. This goes to an Edit User page where you can check a box to grant super admin privileges."
@@ -913,11 +913,11 @@ msgid "An Edit link to a separate Edit Site screen."
 msgstr "「编辑」链接，带您前往「编辑站点」页面。"
 
 #: wp-admin/network/sites.php:31
-msgid "Add New Site takes you to the screen for adding a new site to the network. You can search for a site by Name, ID number, or IP address. Screen Options allows you to choose how many sites to display on one page."
-msgstr "「添加新站点」链接将带您到向站点网络添加新站点的屏幕。您可以按名称、ID 或 IP 地址搜索某站点。显示选项允许您选择在一页上显示多少个站点。"
+msgid "Add Site takes you to the screen for adding a new site to the network. You can search for a site by Name, ID number, or IP address. Screen Options allows you to choose how many sites to display on one page."
+msgstr "「添加站点」链接将带您到向站点网络添加新站点的屏幕。您可以按名称、ID 或 IP 地址搜索某站点。显示选项允许您选择在一页上显示多少个站点。"
 
-#: wp-admin/network/site-users.php:336 wp-admin/network/user-new.php:161
-msgid "Add User"
+#: wp-admin/network/settings.php:251
+msgid "Add Users"
 msgstr "添加用户"
 
 #: wp-admin/network/user-new.php:55
@@ -928,19 +928,19 @@ msgstr "无法添加用户。"
 msgid "Add User will set up a new user account on the network and send that person an email with username and password."
 msgstr "点击「添加用户」链接，将会在站点网络中创建用户帐户，并自动向该用户发送包含用户名和密码的邮件。"
 
-#: wp-admin/network/menu.php:41
+#: wp-admin/network/menu.php:46
 msgid "Updates"
 msgstr "更新"
 
-#: wp-admin/network/menu.php:111 wp-admin/network/settings.php:21
+#: wp-admin/network/menu.php:116 wp-admin/network/settings.php:21
 msgid "Network Settings"
 msgstr "网络设置"
 
-#: wp-admin/network/menu.php:80
+#: wp-admin/network/menu.php:85
 msgid "Installed Themes"
 msgstr "已安装主题"
 
-#: wp-admin/network/menu.php:52
+#: wp-admin/network/menu.php:57
 msgid "All Sites"
 msgstr "所有站点"
 
@@ -1043,8 +1043,8 @@ msgid "Welcome to the Network installation process!"
 msgstr "欢迎来到站点网络安装向导！"
 
 #: wp-admin/includes/network.php:161
-msgid "Error: The network could not be created."
-msgstr "错误：无法创建站点网络。"
+msgid "The network could not be created."
+msgstr "无法创建站点网络。"
 
 #: wp-admin/includes/network.php:146
 msgid "Once the network is created, you may reactivate your plugins."
@@ -1358,7 +1358,9 @@ msgstr "若邮箱地址在数据库中不存在，新用户将被创建。"
 msgid "Admin Email"
 msgstr "管理员邮箱"
 
-#: wp-admin/network/site-new.php:299
+#: wp-admin/network/menu.php:58 wp-admin/network/site-new.php:182
+#: wp-admin/network/site-new.php:192 wp-admin/network/site-new.php:299
+#: wp-admin/network/sites.php:391
 msgid "Add Site"
 msgstr "添加站点"
 
@@ -1410,8 +1412,8 @@ msgstr "电子邮箱域名注册限制"
 msgid "Banned Names"
 msgstr "不允许使用的名称"
 
-#: wp-admin/network/settings.php:251
-msgid "Add New Users"
+#: wp-admin/network/site-users.php:353
+msgid "Add New User"
 msgstr "添加新用户"
 
 #: wp-admin/network/settings.php:239

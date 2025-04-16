@@ -22,8 +22,8 @@ function cim_process_career_form() {
         $position = isset($_POST['position']) ? sanitize_text_field($_POST['position']) : '';
         $email = isset($_POST['email_address']) ? sanitize_email($_POST['email_address']) : '';
         $phone = isset($_POST['phone_number']) ? sanitize_text_field($_POST['phone_number']) : '';
-        $services = isset($_POST['services']) ? sanitize_text_field($_POST['services']) : '';
-        $budget = isset($_POST['budget']) ? sanitize_text_field($_POST['budget']) : '';
+        $education = isset($_POST['education']) ? sanitize_text_field($_POST['education']) : '';
+        $experience = isset($_POST['experience']) ? sanitize_text_field($_POST['experience']) : '';
         $additional_info = isset($_POST['additional_info']) ? sanitize_textarea_field($_POST['additional_info']) : '';
         
         // Validate email (required field)
@@ -60,8 +60,8 @@ function cim_process_career_form() {
             update_post_meta($post_id, '_position', $position);
             update_post_meta($post_id, '_email', $email);
             update_post_meta($post_id, '_phone', $phone);
-            update_post_meta($post_id, '_services', $services);
-            update_post_meta($post_id, '_budget', $budget);
+            update_post_meta($post_id, '_education', $education);
+            update_post_meta($post_id, '_experience', $experience);
             update_post_meta($post_id, '_additional_info', $additional_info);
             update_post_meta($post_id, '_submission_date', current_time('Y-m-d H:i:s'));
             
@@ -75,8 +75,8 @@ function cim_process_career_form() {
                     "Position: %s\n" .
                     "Email: %s\n" .
                     "Phone: %s\n" .
-                    "Services: %s\n" .
-                    "Budget: %s\n" .
+                    "Education: %s\n" .
+                    "Experience: %s\n" .
                     "Additional Info: %s\n\n" .
                     "View this submission in the WordPress admin area.",
                     'cim'
@@ -85,8 +85,8 @@ function cim_process_career_form() {
                 $position,
                 $email,
                 $phone,
-                $services,
-                $budget,
+                $education,
+                $experience,
                 $additional_info
             );
             wp_mail($admin_email, $subject, $message);

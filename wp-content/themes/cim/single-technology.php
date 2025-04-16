@@ -8,38 +8,40 @@
 get_header();
 ?>
 
+<div style="position: fixed; inset: 0; z-index: -1;">
+  <video crossorigin="anonymous" playsinline="" preload="auto" muted="" loop="" autoplay="" controls="no"
+    src="https://video.wixstatic.com/video/11062b_c18db2b1461b46f2ad31bae61009fee1/1080p/mp4/file.mp4"
+    style="height: 100%; width: 100%; object-fit: cover; object-position: center center; opacity: 1;"></video>
+</div>
 <main id="main" class="site-main technology-detail-page">
   <div class="technology-detail-container">
     <?php while (have_posts()) : the_post(); ?>
+      <?php 
+        $bg_color = get_post_meta(get_the_ID(), '_technology_bg_color', true);
+        if (empty($bg_color)) {
+          $bg_color = '#4a4a4a'; // Default color
+        }
+        // Get featured image URL
+        $thumbnail_url = '';
+        if (has_post_thumbnail()) {
+          $thumbnail_url = get_the_post_thumbnail_url(get_the_ID(), 'medium_large');
+        }
+      ?>
       <!-- Technology Header Section -->
-      <section class="technology-header-section">
-        <div class="container">
+      <section class="technology-header-section" style="background-color: <?php echo esc_attr($bg_color); ?>">
+        <div class="">
           <div class="technology-header-content">
-            <?php if (has_post_thumbnail()) : ?>
-              <div class="technology-featured-image">
-                <?php the_post_thumbnail('full'); ?>
-              </div>
-            <?php endif; ?>
-            
+            <div class="technology-featured-image" style="background-image: url('<?php echo esc_url($thumbnail_url); ?>');">
+            </div>
             <div class="technology-header-text">
-              <h1 class="technology-title"><?php the_title(); ?></h1>
               <?php 
               // Get custom fields if they exist
-              $subtitle = get_post_meta(get_the_ID(), '_technology_subtitle', true);
-              if ($subtitle) : ?>
-                <h2 class="technology-subtitle"><?php echo esc_html($subtitle); ?></h2>
-              <?php endif; ?>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- Technology Description Section -->
-      <section class="technology-description-section">
-        <div class="container">
-          <div class="technology-description-content">
-            <div class="technology-description">
-              <?php the_content(); ?>
+              $tech_title = get_post_meta(get_the_ID(), '_technology_title', true);
+              ?>
+              <h1 class="technology-title"><?php echo $tech_title; ?>(<?php the_title(); ?>)</h1>
+              <div class="technology-product-description">
+                <?php the_content(); ?>
+              </div>
             </div>
           </div>
         </div>
@@ -53,7 +55,7 @@ get_header();
         $gallery_array = explode(',', $gallery_images);
       ?>
       <section class="technology-gallery-section">
-        <div class="container">
+        <div class="">
           <h2 class="section-title">Gallery</h2>
           <div class="technology-gallery">
             <?php foreach ($gallery_array as $image_id) : 
@@ -79,7 +81,7 @@ get_header();
       if ($video_url) : 
       ?>
       <section class="technology-video-section">
-        <div class="container">
+        <div class="">
           <h2 class="section-title">Video</h2>
           <div class="technology-video-container">
             <?php 
@@ -109,25 +111,6 @@ get_header();
         </div>
       </section>
       <?php endif; ?>
-
-      <!-- Technology Datasheets Section -->
-      <?php 
-      // Check if there are datasheets
-      $datasheet_url = get_post_meta(get_the_ID(), '_technology_datasheet', true);
-      if ($datasheet_url) : 
-      ?>
-      <section class="technology-datasheet-section">
-        <div class="container">
-          <h2 class="section-title">Datasheets</h2>
-          <div class="technology-datasheet-container">
-            <a href="<?php echo esc_url($datasheet_url); ?>" class="datasheet-button" target="_blank">
-              Download Datasheet
-            </a>
-          </div>
-        </div>
-      </section>
-      <?php endif; ?>
-
     <?php endwhile; ?>
   </div>
 </main>
@@ -142,36 +125,37 @@ get_header();
 .technology-detail-container {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 0 20px;
+  padding: 0;
 }
 
 /* Header Section */
 .technology-header-section {
-  padding: 60px 0 40px;
-  background-color: #352d20;
+  padding: 0;
 }
 
 .technology-header-content {
   display: flex;
   flex-wrap: wrap;
-  align-items: center;
+  align-items: stretch;
 }
 
 .technology-featured-image {
   flex: 0 0 50%;
-  padding-right: 30px;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
 }
 
 .technology-featured-image img {
   width: 100%;
   height: auto;
-  border-radius: 8px;
+  border-radius: 0;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
 }
 
 .technology-header-text {
-  flex: 0 0 50%;
-  padding-left: 30px;
+  flex: 1;
+  padding: 2em;
 }
 
 .technology-title {
@@ -179,12 +163,19 @@ get_header();
   font-weight: bold;
   color: #e0d6a8;
   margin-bottom: 15px;
+  text-transform: uppercase;
 }
 
 .technology-subtitle {
   font-size: 1.8em;
   color: #ffffff;
   margin-bottom: 20px;
+}
+
+.technology-product-description {
+  font-size: 1.1em;
+  line-height: 1.6;
+  color: #ffffff;
 }
 
 /* Description Section */
@@ -196,10 +187,16 @@ get_header();
 .technology-description {
   font-size: 1.1em;
   line-height: 1.8;
+  max-width: 900px;
+  margin: 0 auto;
 }
 
 .technology-description p {
   margin-bottom: 20px;
+}
+
+.technology-description strong {
+  color: #e0d6a8;
 }
 
 /* Gallery Section */
@@ -265,28 +262,73 @@ get_header();
   border-radius: 8px;
 }
 
-/* Datasheet Section */
-.technology-datasheet-section {
+/* Products Section */
+.technology-products-section {
   padding: 60px 0;
-  background-color: #121212;
+  background-color: #b8a05a; /* Gold background color */
   text-align: center;
+}
+
+.products-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 60px;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.product-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+
+.product-logo {
+  font-size: 3.5em;
+  font-weight: bold;
+  color: #121212;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+  transform: perspective(500px) rotateX(20deg);
+  margin-bottom: 20px;
+  letter-spacing: -2px;
+}
+
+.tungcast-logo, .titancast-logo {
+  position: relative;
+  padding: 10px;
+  font-family: 'Arial Black', sans-serif;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100px;
 }
 
 .datasheet-button {
   display: inline-block;
-  padding: 15px 30px;
-  background-color: #b8a05a;
+  padding: 12px 20px;
+  background-color: #8b4c9c; /* Purple background for buttons */
   color: #ffffff;
-  font-size: 1.2em;
+  font-size: 1em;
   font-weight: bold;
   text-decoration: none;
   border-radius: 5px;
   transition: background-color 0.3s ease, transform 0.3s ease;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  min-width: 200px;
 }
 
 .datasheet-button:hover {
-  background-color: #d4bc6a;
+  background-color: #9d5eb0;
   transform: translateY(-3px);
+}
+.technology-title {
+  font-size: 2rem;
+  margin-bottom: 0.5em;
+  color: var(--industrial-yellow);
 }
 
 /* Responsive Styles */

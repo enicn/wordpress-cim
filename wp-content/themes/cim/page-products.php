@@ -13,7 +13,7 @@ get_header();
 <style>
   /* Products Page Styles */
   .products-main {
-    background-color: var(--industrial-dark-bg);
+    background-color: rgba(0, 0, 0, 0.7);
     padding: 40px 0;
     min-height: 60vh;
   }
@@ -153,6 +153,11 @@ get_header();
   }
 </style>
 
+<div style="position: fixed; inset: 0; z-index: -1;">
+  <video crossorigin="anonymous" playsinline="" preload="auto" muted="" loop="" autoplay="" controls="no"
+    src="https://video.wixstatic.com/video/11062b_2ccb88c1c6de4151b51879d6c90fca9d/720p/mp4/file.mp4"
+    style="height: 100%; width: 100%; object-fit: cover; object-position: center center; opacity: 1;"></video>
+</div>
 <main id="main" class="site-main products-main">
   <div class="products-container">
     <header class="products-header">

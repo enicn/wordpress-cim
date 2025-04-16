@@ -132,14 +132,9 @@
             };
             
             // Add step 2 form data
-            const services = [];
-            $('input[name="services[]"]:checked').each(function() {
-                services.push($(this).val());
-            });
-            
             const step2Data = {
-                'services': services.join(', '),
-                'budget': $('#budget').val() || '',
+                'education': $('#education').val() || '',
+                'experience': $('#experience').val() || '',
                 'additional_info': $('#additional-info').val() || ''
             };
             

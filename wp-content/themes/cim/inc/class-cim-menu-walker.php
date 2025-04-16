@@ -40,6 +40,30 @@ class CIM_Menu_Walker extends Walker_Nav_Menu {
         if ( in_array( 'menu-item-has-children', $classes ) ) {
             $classes[] = 'has-dropdown';
         }
+        
+        // Check if any child menu item is current/active
+        if ( in_array( 'menu-item-has-children', $classes ) ) {
+            // Check if any of this item's children is the current page
+            $current_item_ancestors = array();
+            $current_page_id = get_queried_object_id();
+            
+            // Get current menu item's ancestors
+            if ( isset( $args->menu ) ) {
+                $current_item_ancestors = wp_filter_object_list( 
+                    wp_get_nav_menu_items( $args->menu ), 
+                    array( 'current' => true, 'current_item_ancestor' => true ) 
+                );
+                
+                // Check if this item is an ancestor of the current item
+                foreach ( $current_item_ancestors as $ancestor ) {
+                    if ( $ancestor->menu_item_parent == $item->ID ) {
+                        $classes[] = 'current-menu-ancestor';
+                        $classes[] = 'current-menu-parent';
+                        break;
+                    }
+                }
+            }
+        }
 
         $args = apply_filters( 'nav_menu_item_args', $args, $item, $depth );
 
