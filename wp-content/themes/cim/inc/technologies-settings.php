@@ -74,6 +74,16 @@ function cim_add_technology_meta_boxes() {
         'side',
         'default'
     );
+    
+    // Sort Order
+    add_meta_box(
+        'cim_technology_sort_order',
+        __('Sort Order', 'cim'),
+        'cim_technology_sort_order_callback',
+        'technology',
+        'side',
+        'default'
+    );
 }
 add_action('add_meta_boxes', 'cim_add_technology_meta_boxes');
 
@@ -94,6 +104,25 @@ function cim_technology_bg_color_callback($post) {
     echo '<label for="technology-bg-color">' . __('Background Color', 'cim') . '</label>';
     echo '<input type="color" id="technology-bg-color" name="technology_bg_color" value="' . esc_attr($bg_color) . '" style="width:100%">';
     echo '<p class="description">' . __('Select a background color for this technology content.', 'cim') . '</p>';
+}
+
+/**
+ * Technology Sort Order Meta Box Callback
+ */
+function cim_technology_sort_order_callback($post) {
+    // Add nonce for security
+    wp_nonce_field('cim_technology_sort_order_nonce', 'cim_technology_sort_order_nonce');
+    
+    // Get the sort order if it exists
+    $sort_order = get_post_meta($post->ID, '_technology_sort_order', true);
+    if (empty($sort_order)) {
+        $sort_order = '10'; // Default sort order
+    }
+    
+    // Output the field
+    echo '<label for="technology-sort-order">' . __('Sort Order', 'cim') . '</label>';
+    echo '<input type="number" id="technology-sort-order" name="technology_sort_order" value="' . esc_attr($sort_order) . '" style="width:100%">';
+    echo '<p class="description">' . __('Enter a number to determine the sort order (lower numbers appear first).', 'cim') . '</p>';
 }
 
 /**
@@ -129,8 +158,77 @@ function cim_save_technology_meta($post_id) {
             update_post_meta($post_id, '_technology_title', sanitize_text_field($_POST['technology_title']));
         }
     }
+    
+    // Save Sort Order
+    if (isset($_POST['cim_technology_sort_order_nonce']) && wp_verify_nonce($_POST['cim_technology_sort_order_nonce'], 'cim_technology_sort_order_nonce')) {
+        if (isset($_POST['technology_sort_order'])) {
+            update_post_meta($post_id, '_technology_sort_order', absint($_POST['technology_sort_order']));
+        }
+    }
 }
 add_action('save_post_technology', 'cim_save_technology_meta');
+
+/**
+ * Add Technologies Page Meta Boxes
+ */
+function cim_add_technologies_page_meta_boxes() {
+    // Description Rich Text Editor
+    add_meta_box(
+        'cim_technologies_description',
+        __('Technologies Description', 'cim'),
+        'cim_technologies_description_callback',
+        'page',
+        'normal',
+        'high'
+    );
+}
+add_action('add_meta_boxes', 'cim_add_technologies_page_meta_boxes');
+
+/**
+ * Technologies Description Meta Box Callback
+ */
+function cim_technologies_description_callback($post) {
+    // Check if this is the technologies page template
+    $template = get_post_meta($post->ID, '_wp_page_template', true);
+    if ($template !== 'page-technologies.php') {
+        return; // Only show for technologies page template
+    }
+    
+    // Add nonce for security
+    wp_nonce_field('cim_technologies_description_nonce', 'cim_technologies_description_nonce');
+    
+    // Get the description if it exists
+    $description = get_post_meta($post->ID, '_technologies_description', true);
+    
+    // Output the field
+    echo '<label for="technologies-description">' . __('Technologies Description', 'cim') . '</label>';
+    wp_editor($description, 'technologies_description', array(
+        'textarea_name' => 'technologies_description',
+        'media_buttons' => true,
+        'textarea_rows' => 10,
+        'editor_class'  => 'technologies-description-editor'
+    ));
+    echo '<p class="description">' . __('Enter the description text for the technologies page.', 'cim') . '</p>';
+}
+
+/**
+ * Save Technologies Page Meta Data
+ */
+function cim_save_technologies_page_meta($post_id) {
+    // Check if this is the technologies page template
+    $template = get_post_meta($post_id, '_wp_page_template', true);
+    if ($template !== 'page-technologies.php') {
+        return; // Only save for technologies page template
+    }
+    
+    // Save Description
+    if (isset($_POST['cim_technologies_description_nonce']) && wp_verify_nonce($_POST['cim_technologies_description_nonce'], 'cim_technologies_description_nonce')) {
+        if (isset($_POST['technologies_description'])) {
+            update_post_meta($post_id, '_technologies_description', wp_kses_post($_POST['technologies_description']));
+        }
+    }
+}
+add_action('save_post_page', 'cim_save_technologies_page_meta');
 
 /**
  * Register Technologies Page Settings

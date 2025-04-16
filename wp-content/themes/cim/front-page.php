@@ -354,14 +354,12 @@ get_header();
 
   <!-- Video Section -->
   <section class="video-section section">
-    <div class="container">
-      <div class="video-container">
-        <video autoplay loop muted playsinline>
-          <source src="https://video.wixstatic.com/video/2ca1e9_0e5abe2f22a045c1a15f89df63952315/720p/mp4/file.mp4"
-            type="video/mp4">
-          <?php esc_html_e('Your browser does not support the video tag.', 'cim'); ?>
-        </video>
-      </div>
+    <div class="video-container">
+      <video autoplay loop muted playsinline>
+        <source src="https://video.wixstatic.com/video/2ca1e9_0e5abe2f22a045c1a15f89df63952315/720p/mp4/file.mp4"
+          type="video/mp4">
+        <?php esc_html_e('Your browser does not support the video tag.', 'cim'); ?>
+      </video>
     </div>
   </section>
   <section class="geometric-section section"

@@ -115,20 +115,23 @@
     flex-direction: column;
 }
 
-.technology-thumbnail {
-    height: 200px;
-    overflow: hidden;
+.technology-layout-container {
+    display: flex;
+    flex-direction: row;
+    height: 100%;
 }
 
-.technology-thumbnail img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
+.technology-thumbnail {
+    flex: none;
+    width: 30%;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
     transition: transform 0.5s ease;
 }
 
-.technology-item:hover .technology-thumbnail img {
-    transform: scale(1.1);
+.technology-item:hover .technology-thumbnail {
+    transform: scale(1.05);
 }
 
 .technology-text {
@@ -136,6 +139,8 @@
     flex-grow: 1;
     display: flex;
     flex-direction: column;
+    width: 70%;
+    box-sizing: border-box;
 }
 
 .technology-title {

@@ -1,10 +1,10 @@
 <?php
 /**
- * cim Theme functions and definitions
+ * CIM functions and definitions
  *
  * @link https://developer.wordpress.org/themes/basics/theme-functions/
  *
- * @package cim
+ * @package Industrial
  */
 
 if ( ! defined( 'cim_VERSION' ) ) {
@@ -29,6 +29,9 @@ require get_template_directory() . '/inc/news-page-settings.php';
 
 // Include technologies page settings
 require get_template_directory() . '/inc/technologies-settings.php';
+
+// Include live chat functionality
+require get_template_directory() . '/inc/live-chat.php';
 
 /**
  * Sets up theme defaults and registers support for various WordPress features.
