@@ -5,6 +5,7 @@
  * @link https://developer.wordpress.org/themes/basics/theme-functions/
  *
  * @package Industrial
+ * @package Industrial
  */
 
 if (!defined('cim_VERSION')) {

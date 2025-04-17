@@ -45,6 +45,25 @@ $header_link = get_option('cim_technologies_link');
   margin-bottom: 0.5em;
   color: var(--industrial-yellow);
 }
+
+.technology-layout-container {
+  display: flex;
+  align-items: stretch;
+}
+.technology-thumbnail {
+  flex: none;
+  width: 50%;
+  background-size: cover;
+  background-position: center;
+}
+.technology-text {
+  padding: 2em;
+}
+.technology-title {
+  font-size: 2rem;
+  margin-bottom: 0.5em;
+  color: var(--industrial-yellow);
+}
 </style>
 <div style="position: fixed; inset: 0; z-index: -1;">
   <video crossorigin="anonymous" playsinline="" preload="auto" muted="" loop="" autoplay="" controls="no"
@@ -54,6 +73,7 @@ $header_link = get_option('cim_technologies_link');
 <main id="main" class="site-main">
   <!-- Proprietary Technologies Section -->
   <section id="proprietary-tech" class="tech-section">
+    <div style="
     <div style="
       background-color: rgba(232,205,139, 0.6);
       color: #000;
@@ -102,12 +122,15 @@ $header_link = get_option('cim_technologies_link');
   <!-- Technology Articles Section -->
   <section id="technology-articles" class="tech-articles-section">
     <div class="">
+    <div class="">
 
       <div class="technology-grid">
         <?php
         $args = array(
           'post_type' => 'technology',
           'posts_per_page' => -1,
+          'meta_key' => '_technology_sort_order',
+          'orderby' => 'meta_value_num',
           'meta_key' => '_technology_sort_order',
           'orderby' => 'meta_value_num',
           'order' => 'ASC'
@@ -132,6 +155,15 @@ $header_link = get_option('cim_technologies_link');
             if (has_post_thumbnail()) {
               $thumbnail_url = get_the_post_thumbnail_url(get_the_ID(), 'medium_large');
             }
+            $tech_title = get_post_meta(get_the_ID(), '_technology_title', true);
+            if (empty($tech_title)) {
+              $tech_title = ''; // Default color
+            }
+            // Get featured image URL
+            $thumbnail_url = '';
+            if (has_post_thumbnail()) {
+              $thumbnail_url = get_the_post_thumbnail_url(get_the_ID(), 'medium_large');
+            }
             ?>
             <article id="post-<?php the_ID(); ?>" <?php post_class('technology-item'); ?>>
               <div class="technology-content" style="background-color: <?php echo esc_attr($bg_color); ?>">
@@ -139,7 +171,16 @@ $header_link = get_option('cim_technologies_link');
                   <?php if ($thumbnail_url): ?>
                     <div class="technology-thumbnail" style="background-image: url('<?php echo esc_url($thumbnail_url); ?>');"></div>
                   <?php endif; ?>
+                <div class="technology-layout-container">
+                  <?php if ($thumbnail_url): ?>
+                    <div class="technology-thumbnail" style="background-image: url('<?php echo esc_url($thumbnail_url); ?>');"></div>
+                  <?php endif; ?>
 
+                  <div class="technology-text">
+                    <h2 class="technology-title"><?php echo $tech_title; ?>(<?php the_title(); ?>)</h2>
+                    <div class="technology-description">
+                      <?php the_excerpt(); ?>
+                    </div>
                   <div class="technology-text">
                     <h2 class="technology-title"><?php echo $tech_title; ?>(<?php the_title(); ?>)</h2>
                     <div class="technology-description">
