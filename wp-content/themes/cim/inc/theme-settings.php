@@ -48,14 +48,14 @@ function cim_add_theme_settings_menu()
 
   // Redirect existing settings pages to the new menu
   // News Page Settings
-  add_submenu_page(
-    'cim-theme-settings',
-    __('News Page Settings', 'cim'),
-    __('News Page Settings', 'cim'),
-    'manage_options',
-    'cim-news-page-settings',
-    'cim_news_page_settings_callback'
-  );
+  // add_submenu_page(
+  //   'cim-theme-settings',
+  //   __('News Page Settings', 'cim'),
+  //   __('News Page Settings', 'cim'),
+  //   'manage_options',
+  //   'cim-news-page-settings',
+  //   'cim_news_page_settings_callback'
+  // );
 
   // About Page Settings
   add_submenu_page(

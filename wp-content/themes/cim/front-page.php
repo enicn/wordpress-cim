@@ -139,7 +139,7 @@ get_header();
           <?php echo esc_html(get_theme_mod('cim_about_title', __('ABOUT US', 'cim'))); ?>
         </h2>
         <div class="about-text">
-          <?php echo wp_kses_post(get_theme_mod('cim_about_text', __('Canadian Innovative Materials (CIM) is a global leader in wear solutions, specializing in advanced materials engineered to withstand extreme abrasion in the mining, energy, and construction industries. Our proprietary technologies - including Tungsten Carbide Overlay (WCO), High Chrome White Iron (HCWI), Silicon Carbide Ceramic (SiC), and Chrome Carbide Overlay (CCO) - provide exceptional wear resistance, significantly enhancing equipment performance and longevity.', 'cim'))); ?>
+          <?php echo wp_kses_post(get_theme_mod('cim_about_text', __(get_bloginfo('description') . ' (CIM) is a global leader in wear solutions, specializing in advanced materials engineered to withstand extreme abrasion in the mining, energy, and construction industries. Our proprietary technologies - including Tungsten Carbide Overlay (WCO), High Chrome White Iron (HCWI), Silicon Carbide Ceramic (SiC), and Chrome Carbide Overlay (CCO) - provide exceptional wear resistance, significantly enhancing equipment performance and longevity.', 'cim'))); ?>
         </div>
         <a href="<?php echo esc_url(get_theme_mod('cim_about_button_url', '#')); ?>" class="read-more-button">
           <?php echo esc_html(get_theme_mod('cim_about_button_text', __('READ MORE', 'cim'))); ?>

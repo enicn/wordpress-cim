@@ -161,6 +161,7 @@ get_header(); ?>
     z-index: 1000;
     justify-content: center;
     align-items: center;
+    z-index: 10000;
   }
 
   .modal-container {
@@ -251,6 +252,13 @@ get_header(); ?>
     color: #fff;
   }
 
+  .form-message {
+    color: green;
+  }
+  .form-error-message {
+    color: red;
+  }
+
   /* Responsive Adjustments */
   @media (max-width: 768px) {
     .career-content-wrapper {
@@ -288,22 +296,24 @@ get_header(); ?>
 </div>
 <main id="main" class="site-main">
   <div class="career-content-wrapper">
-    <h1><?php esc_html_e('Careers at Canadian Innovative Materials', 'text-domain'); ?></h1>
+    <h1><?php esc_html_e('Careers at ', 'text-domain'); ?><?php echo get_bloginfo('description'); ?></h1>
     <div class="career-columns">
       <div class="career-description">
         <p>
-          <?php esc_html_e('Canadian Innovative Materials is expanding! We are seeking self-motivated team players who thrive in a dynamic startup environment and are eager to help build and sell innovative products. If you\'re looking to be part of a growing opportunity from the ground up, we\'d love to hear from you -- send us your email to connect!', 'text-domain'); ?>
+          <?php esc_html_e(get_bloginfo('description') . ' is expanding! We are seeking self-motivated team players who thrive in a dynamic startup environment and are eager to help build and sell innovative products. If you\'re looking to be part of a growing opportunity from the ground up, we\'d love to hear from you -- send us your email to connect!', 'text-domain'); ?>
         </p>
       </div>
       <div class="career-form">
         <?php 
-          // Display form messages
+          // Display form messages for non-Ajax fallback
           echo cim_display_form_messages('career');
           ?>
 
-          <form id="career-step1-form" action="" method="post">
+          <form id="career-step1-form" method="post">
           <?php wp_nonce_field('career_form_action', 'career_form_nonce'); ?>
           <input type="hidden" name="career_form_submitted" value="true">
+          
+          <!-- Form messages for Ajax responses will be inserted here -->
 
           <div class="form-group">
             <label for="full-name"><?php esc_html_e('What\'s your name?', 'text-domain'); ?></label>
@@ -342,7 +352,7 @@ get_header(); ?>
         <div class="modal-container">
           <h2 class="modal-title"><?php esc_html_e('Additional Information', 'text-domain'); ?></h2>
           
-          <form id="career-step2-form" action="" method="post">
+          <form id="career-step2-form" method="post">
             <div class="modal-subtitle"><?php esc_html_e('Education', 'text-domain'); ?></div>
             <div class="select-container">
               <select id="education" name="education">
@@ -375,7 +385,7 @@ get_header(); ?>
 
             <div class="modal-buttons">
               <button type="button" id="back-button" class="back-button"><?php esc_html_e('Back', 'text-domain'); ?></button>
-              <button type="submit" class="send-button"><?php esc_html_e('Send', 'text-domain'); ?></button>
+              <button type="button" id="send-button" class="send-button"><?php esc_html_e('Send', 'text-domain'); ?></button>
             </div>
           </form>
         </div>

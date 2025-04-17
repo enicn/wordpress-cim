@@ -25,6 +25,9 @@ require get_template_directory() . '/inc/custom-post-types.php';
 // Include form handlers
 require get_template_directory() . '/inc/form-handlers.php';
 
+// Include Ajax handlers
+require get_template_directory() . '/inc/ajax-handlers.php';
+
 // Include theme settings menu
 require get_template_directory() . '/inc/theme-settings.php';
 
@@ -215,6 +218,14 @@ function cim_scripts()
     wp_enqueue_style('cim-category-thumbnails', get_template_directory_uri() . '/assets/css/category-thumbnails.css', array(), cim_VERSION);
   }
 
+  // Enqueue Ajax forms script for contact and careers pages
+  if (is_page_template('page-careers.php') || is_page_template('page-contact-us.php')) {
+    wp_enqueue_script('cim-ajax-forms', get_template_directory_uri() . '/assets/js/ajax-forms.js', array('jquery'), cim_VERSION, true);
+
+    // Localize the script with ajax_url
+    wp_localize_script('cim-ajax-forms', 'ajaxurl', admin_url('admin-ajax.php'));
+  }
+
   // Enqueue careers page CSS and JS
   if (is_page_template('page-careers.php')) {
     wp_enqueue_style('cim-careers', get_template_directory_uri() . '/assets/css/careers.css', array(), cim_VERSION);
@@ -222,7 +233,7 @@ function cim_scripts()
   }
 
   // Enqueue contact page CSS
-  if (is_page_template('page-contact.php')) {
+  if (is_page_template('page-contact-us.php')) {
     wp_enqueue_style('cim-contact', get_template_directory_uri() . '/assets/css/contact.css', array(), cim_VERSION);
   }
 
@@ -987,7 +998,7 @@ add_action('customize_register', 'cim_customize_register');
  */
 function cim_process_careers_application()
 {
-  if (isset($_POST['action']) && $_POST['action'] == 'submit_careers_application') {
+  if (isset($_POST['action']) && $_POST['action'] == 'cim_career_form') {
     if (check_admin_referer('careers_application_nonce', 'careers_nonce')) {
       // Get form data
       $name = sanitize_text_field($_POST['applicant-name']);
@@ -1035,3 +1046,28 @@ function cim_process_careers_application()
   }
 }
 add_action('template_redirect', 'cim_process_careers_application');
+
+/**
+ * Filters the document title before it is generated.
+ * Allows setting specific titles for certain pages.
+ *
+ * @param string $title The original title (usually empty at this stage).
+ * @return string The potentially modified title.
+ */
+function my_custom_page_titles( $title ) {
+  // 检查是否为 "about" 页面 (使用页面别名/slug)
+  // 假设你的 "About" 页面的 slug 是 'about'
+  if ( is_page( 'about' ) ) {
+      return '这是我们的“关于我们”页面的自定义标题'; // 设置你想要的精确标题
+  }
+
+  // 检查是否为 "news" 页面 (使用页面别名/slug)
+  // 假设你的 "News" 页面的 slug 是 'news'
+  if ( is_page( 'news' ) ) {
+      return '查看最新消息 - 这是自定义的新闻标题'; // 设置你想要的精确标题
+  }
+
+  // 对于所有其他页面，返回原始值，让 WordPress 或其他插件正常处理
+  return $title;
+}
+add_filter( 'pre_get_document_title', 'my_custom_page_titles' );

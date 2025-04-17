@@ -258,10 +258,11 @@ get_header(); ?>
 
     <section class="contact-form-section">
       <?php 
-      // Display form messages
+      // Display form messages for non-Ajax fallback
       echo cim_display_form_messages('contact');
       ?>
       <form action="" method="post" class="contact-form">
+        <!-- Form messages for Ajax responses will be inserted here -->
         <?php wp_nonce_field('contact_form_action', 'contact_form_nonce'); ?>
         <input type="hidden" name="contact_form_submitted" value="true">
         
@@ -298,7 +299,7 @@ get_header(); ?>
 
     <section class="contact-info-map-section">
       <div class="contact-info">
-        <h2>Canadian Innovative Materials Ltd.</h2>
+        <h2><?php echo get_bloginfo('description'); ?> Ltd.</h2>
 
         <h3>Calgary Office:</h3>
         <p>421 7th Avenue SW, 30th Floor</p>

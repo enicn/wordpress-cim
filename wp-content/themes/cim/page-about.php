@@ -293,7 +293,7 @@ get_header(); ?>
         <div class="hero-text">
           <h1><?php echo esc_html(cim_get_about_page_option('hero_title', __('CIM Corporation', 'cim'))); ?></h1>
           <p>
-            <?php echo wp_kses_post(cim_get_about_page_option('hero_description', __('Canadian Innovative Materials (CIM) is a global leader in wear solutions, specializing in advanced materials engineered to withstand extreme abrasion in the mining, energy, and construction industries. Our proprietary technologies - including Tungsten Carbide Overlay (WCO), High Chrome White Iron (HCWI), Silicon Carbide Ceramic (SiC), and Chrome Carbide Overlay (CCO) - provide exceptional wear resistance, significantly enhancing equipment performance and longevity.', 'cim'))); ?>
+            <?php echo wp_kses_post(cim_get_about_page_option('hero_description', __(get_bloginfo('description') . ' (CIM) is a global leader in wear solutions, specializing in advanced materials engineered to withstand extreme abrasion in the mining, energy, and construction industries. Our proprietary technologies - including Tungsten Carbide Overlay (WCO), High Chrome White Iron (HCWI), Silicon Carbide Ceramic (SiC), and Chrome Carbide Overlay (CCO) - provide exceptional wear resistance, significantly enhancing equipment performance and longevity.', 'cim'))); ?>
           </p>
           <a href="<?php echo esc_url(cim_get_about_page_option('brochure_button_url', 'https://drive.google.com/file/d/1tKpVcyX2ZXmbXX2xVfOI7AZpGLQM1292/view?pli=1')); ?>">
             <div class="btn cim-brochure-btn"><?php echo esc_html(cim_get_about_page_option('brochure_button_text', __('CIM Brochure', 'cim'))); ?></div>
